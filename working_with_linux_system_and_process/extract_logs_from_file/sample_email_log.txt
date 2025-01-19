@@ -1,0 +1,3 @@
+User login from john.doe@example.com
+Contact support at support@company.com
+Send your feedback to feedback@service.org
