@@ -1,0 +1,7 @@
+total 20
+drwxrwxr-x  2 mehanic mehanic 4096 Nov 14 04:11 .
+drwxrwxr-x 85 mehanic mehanic 4096 Nov 14 04:08 ..
+-rw-rw-r--  1 mehanic mehanic    0 Nov 14 04:11 data.txt
+-rw-rw-r--  1 mehanic mehanic  109 Nov 14 04:10 go.mod
+-rw-rw-r--  1 mehanic mehanic  243 Nov 14 04:10 go.sum
+-rw-rw-r--  1 mehanic mehanic  344 Nov 14 04:09 main.go
