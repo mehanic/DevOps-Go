@@ -6,7 +6,7 @@ func main() {
 	fmt.Print("Hello World")
 	fmt.Println("Hello World")
 	fmt.Printf("Hello World")
-	//println yeni satıra geçerek basar, print aynı satıra basar printf'e de string verirsek direkt basar
+	// println prints to a new line, print prints on the same line, and printf can directly print strings
 
 	name := "Deniz"
 
@@ -14,51 +14,43 @@ func main() {
 	fmt.Println(name)
 	fmt.Printf(name)
 
-	fmt.Print("Benim adım:", name, "\n")
-	fmt.Println("Benim adım:", name)
-	fmt.Printf("Benim adım:", name)
+	fmt.Print("My name is:", name, "\n")
+	fmt.Println("My name is:", name)
+	fmt.Printf("My name is:", name)
 
 	/*
-		Benim adım:Deniz
-		Benim adım: Deniz
-		Benim adım: %!(EXTRA string=Deniz)
+		Output:
+		My name is:Deniz
+		My name is: Deniz
+		My name is: %!(EXTRA string=Deniz)
 	*/
 
-	fmt.Printf("Benim adım: %v", name) // değeri bastırır
-	fmt.Printf("Benim adım: %T", name) // tipi yazdırır
-	fmt.Printf("Benim adım: %v %T", name, name)
-	// %d 10 luk tabanda gösterir %c char ama %v herşeyle kullanılır
+	fmt.Printf("My name is: %v", name) // prints the value
+	fmt.Printf("My name is: %T", name) // prints the type
+	fmt.Printf("My name is: %v %T", name, name)
+	// %d shows numbers in base 10, %c for characters, but %v works with everything
 
-	//VISIBILITY --> scope mantığı
+	// VISIBILITY --> The concept of scope
 
-	//NAMING
+	// NAMING
 	/*
-		Sade ve anlaşılır olmalı
-		camelCase kullanılır.
-		Kısatmalar büyük harfle URL gibi Url değil
-		Başka değişkenadında da büyük myHTTP gibi
-		for dögüsü indexi için i,j,k olabilir
-		değişken isminde türkçe karakter olabilir
+		Names should be simple and understandable.
+		CamelCase is used.
+		Abbreviations are written in uppercase (e.g., URL instead of Url).
+		Other variable names can also use uppercase, like `myHTTP`.
+		For loop indices can use short names like i, j, k.
+		Variable names can include Turkish characters, but it's best to avoid them for broader compatibility.
 	*/
 
-	//shadowing -->
+	// SHADOWING -->
 
 	x := 5
 
 	{
 		x := 10
-		fmt.Println(x) //10
+		fmt.Println(x) // Outputs 10
 	}
 
-	fmt.Println(x) //5
+	fmt.Println(x) // Outputs 5
 
 }
-
-// ┌─────(mehanic)─────(~/structure/data_types)
-// └> $ go run /home/mehanic/structure/data_types/05_print_types/main.go
-// Hello WorldHello World
-// Hello WorldDenizDeniz
-// DenizBenim adım:Deniz
-// Benim adım: Deniz
-// Benim adım:%!(EXTRA string=Deniz)Benim adım: DenizBenim adım: stringBenim adım: Deniz string10
-// 5
