@@ -1,0 +1,23 @@
+[
+	{
+	  "username": "Alice",
+	  "perms": { "admin": true },
+	  "devices": [
+		{ "name": "Phone", "battery": 95 },
+		{ "name": "Laptop", "battery": 85 }
+	  ]
+	},
+	{
+	  "username": "Bob",
+	  "perms": { "write": true },
+	  "devices": [
+		{ "name": "Tablet", "battery": 60 }
+	  ]
+	},
+	{
+	  "username": "Charlie",
+	  "perms": {},
+	  "devices": []
+	}
+  ]
+  
