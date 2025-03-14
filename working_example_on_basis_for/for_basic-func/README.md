@@ -1,0 +1,195 @@
+The Go program you've provided is an example of how to convert temperatures between Celsius and Fahrenheit, along with dynamically generating tables for these conversions. Let's break down the rules and concepts behind the program:
+
+### **1. Type Definitions (`celsius` and `fahrenheit`)**
+
+```go
+type celsius float64
+type fahrenheit float64
+```
+
+- `celsius` and `fahrenheit` are custom types, both based on the `float64` type. This allows us to have clearer, more meaningful type names when working with temperature data. 
+- Using custom types also enables the addition of methods to these types, which is demonstrated in the following functions.
+
+### **2. Methods on `celsius` and `fahrenheit`**
+
+#### **Celsius to Fahrenheit Conversion (`fahrenheit()` method)**
+
+```go
+func (c celsius) fahrenheit() fahrenheit {
+	return fahrenheit((c * 9.0 / 5.0) + 32.0)
+}
+```
+
+- This method takes a value of type `celsius` (`c`) and returns its equivalent in Fahrenheit.
+- The formula to convert Celsius to Fahrenheit is:  
+  \[ F = \left( C \times \frac{9}{5} \right) + 32 \]
+
+#### **Fahrenheit to Celsius Conversion (`celsius()` method)**
+
+```go
+func (f fahrenheit) celsius() celsius {
+	return celsius((f - 32.0) * 5.0 / 9.0)
+}
+```
+
+- This method takes a value of type `fahrenheit` (`f`) and returns its equivalent in Celsius.
+- The formula to convert Fahrenheit to Celsius is:  
+  \[ C = \left( F - 32 \right) \times \frac{5}{9} \]
+
+### **3. Constants for Formatting**
+
+```go
+const (
+	line         = "======================="
+	rowFormat    = "| %8s | %8s |\n"
+	numberFormat = "%.1f"
+)
+```
+
+- These constants are used for formatting purposes when printing the table:
+  - `line`: A string used to draw the separator line in the table.
+  - `rowFormat`: The format string used for printing each row of the table (two columns).
+  - `numberFormat`: A format string that ensures numbers are displayed with one decimal place (e.g., `%.1f` means one decimal place).
+
+### **4. Function Type `getRowFn`**
+
+```go
+type getRowFn func(row int) (string, string)
+```
+
+- This defines a custom function type `getRowFn`. It represents a function that takes an integer (`row`) and returns two strings.
+- The purpose of this function is to provide a dynamic way of generating the rows of the table. You can pass different row-generating functions to the table-drawing function, as shown later in the code.
+
+### **5. `drawTable()` Function**
+
+```go
+func drawTable(hdr1, hdr2 string, rows int, getRow getRowFn) {
+	fmt.Println(line)
+	fmt.Printf(rowFormat, hdr1, hdr2)
+	fmt.Println(line)
+
+	for i := 0; i < rows; i++ {
+		cell1, cell2 := getRow(i)
+		fmt.Printf(rowFormat, cell1, cell2)
+	}
+	fmt.Println(line)
+}
+```
+
+- `drawTable()` is a function that prints a table with two columns, where the headers are provided as `hdr1` and `hdr2`.
+- It takes the number of rows to print (`rows`) and a function (`getRow`) that generates the content for each row. 
+- Inside the loop, it calls the `getRow()` function for each row (`i`) and prints the two resulting strings (`cell1` and `cell2`).
+  
+### **6. Row Functions (`ctof()` and `ftoc()`)**
+
+#### **Celsius to Fahrenheit Row Function (`ctof()`)**
+
+```go
+func ctof(row int) (string, string) {
+	c := celsius(row)
+	f := c.fahrenheit()
+	cell1 := fmt.Sprintf(numberFormat, f)
+	cell2 := fmt.Sprintf(numberFormat, c)
+	return cell1, cell2
+}
+```
+
+- `ctof()` is a function that generates a row for the Celsius-to-Fahrenheit table.
+- It takes an integer `row` (representing a Celsius value) and:
+  - Converts it to a `celsius` type.
+  - Converts that Celsius value to Fahrenheit using the `fahrenheit()` method.
+  - It returns both values formatted as strings.
+
+#### **Fahrenheit to Celsius Row Function (`ftoc()`)**
+
+```go
+func ftoc(row int) (string, string) {
+	f := fahrenheit(row)
+	c := f.celsius()
+	cell1 := fmt.Sprintf(numberFormat, f)
+	cell2 := fmt.Sprintf(numberFormat, c)
+	return cell1, cell2
+}
+```
+
+- `ftoc()` is a function that generates a row for the Fahrenheit-to-Celsius table.
+- It takes an integer `row` (representing a Fahrenheit value) and:
+  - Converts it to a `fahrenheit` type.
+  - Converts that Fahrenheit value to Celsius using the `celsius()` method.
+  - It returns both values formatted as strings.
+
+### **7. Main Function**
+
+```go
+func main() {
+	drawTable("°C", "°F", 15, ctof)
+	fmt.Println()
+	drawTable("°F", "°C", 15, ftoc)
+}
+```
+
+- In `main()`, the `drawTable()` function is called twice:
+  - First, to print the Celsius-to-Fahrenheit table (`ctof` is passed as the row-generating function).
+  - Second, to print the Fahrenheit-to-Celsius table (`ftoc` is passed as the row-generating function).
+- The first argument passed to `drawTable()` is the header for the first column, and the second argument is the header for the second column.
+
+### **Program Flow and Output:**
+
+1. The `drawTable()` function is called to draw a table with the Celsius-to-Fahrenheit conversions.
+2. Each row is generated by the `ctof()` function, which converts the Celsius value (`row`) to both Celsius and Fahrenheit and returns the formatted results.
+3. After the first table, an empty line is printed using `fmt.Println()`.
+4. The `drawTable()` function is called again to draw a table with the Fahrenheit-to-Celsius conversions.
+5. Each row is generated by the `ftoc()` function, which converts the Fahrenheit value (`row`) to both Fahrenheit and Celsius and returns the formatted results.
+
+### **Expected Output:**
+```
+=======================
+|      °C |      °F |
+=======================
+|     0.0 |    32.0 |
+|     1.0 |    33.8 |
+|     2.0 |    35.6 |
+|     3.0 |    37.4 |
+|     4.0 |    39.2 |
+|     5.0 |    41.0 |
+|     6.0 |    42.8 |
+|     7.0 |    44.6 |
+|     8.0 |    46.4 |
+|     9.0 |    48.2 |
+|    10.0 |    50.0 |
+|    11.0 |    51.8 |
+|    12.0 |    53.6 |
+|    13.0 |    55.4 |
+|    14.0 |    57.2 |
+=======================
+
+=======================
+|      °F |      °C |
+=======================
+|    0.0 |    -17.8 |
+|    1.0 |    -17.2 |
+|    2.0 |    -18.9 |
+|    3.0 |    -18.3 |
+|    4.0 |    -18.9 |
+|    5.0 |    -19.4 |
+|    6.0 |    -20.0 |
+|    7.0 |    -20.6 |
+|    8.0 |    -21.1 |
+|    9.0 |    -21.7 |
+|    10.0 |   -22.2 |
+|    11.0 |   -22.8 |
+|    12.0 |   -23.3 |
+|    13.0 |   -23.9 |
+|    14.0 |   -24.4 |
+=======================
+```
+
+### **Summary of Rules and Concepts:**
+
+1. **Custom Types (`celsius` and `fahrenheit`)**: These are used to define more meaningful types for temperature values.
+2. **Methods**: Methods are defined on the custom types to perform conversions between Celsius and Fahrenheit.
+3. **Table Generation**: The `drawTable()` function dynamically generates tables by passing functions (`ctof`, `ftoc`) that generate the rows.
+4. **Function Type (`getRowFn`)**: A custom function type is used to pass different row-generating functions to `drawTable()`.
+5. **Formatted Output**: The program uses formatted strings (`fmt.Sprintf()`) to ensure the output is displayed correctly with one decimal place.
+
+The program is a great example of using Go's type system, methods, and function types to create reusable and flexible functionality.

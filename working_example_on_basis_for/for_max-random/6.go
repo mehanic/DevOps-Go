@@ -23,6 +23,4 @@ func main() {
 		sumi += a[i]
 	}
 	fmt.Println(sumi)
-
-	main1()
 }
