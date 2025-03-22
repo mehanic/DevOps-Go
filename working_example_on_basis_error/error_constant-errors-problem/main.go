@@ -20,3 +20,4 @@ func main() {
 	fmt.Println(io.EOF)         // nil
 	fmt.Println(err1 == io.EOF) // false
 }
+
