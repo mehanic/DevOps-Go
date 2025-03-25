@@ -29,7 +29,9 @@ func Color()(uint8,uint8,uint8){
 
 func main(){
 	// welcom()
-	// add(10,20)
+	 add(10,20)
+	 divide(20, 5)
+	 sqrt(3)
 	// result,mistake := divide(20,0)
 	// if mistake{
 	// 	fmt.Pirntln("Error")
