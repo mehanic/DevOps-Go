@@ -1,10 +1,3 @@
-// Sizga butun sonli array berilgan va n butun son beriladi siz 
-// agarda shu masiv ichida k uniqe bolsa -1, agarda uniqe bo'lmasa qancha
-// duplicat bolgani chiqarishingiz kerak.
-// Masalan : [1,1,12,23,3,10] n = 12
-// Output:-1
-// [1,2,4,4,5,6,7,12,20] n = 4
-
 package main
 
 import "fmt"

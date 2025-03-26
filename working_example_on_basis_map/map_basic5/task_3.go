@@ -1,7 +1,4 @@
-// Sizga butun sonli array berilgan sz uni ichigan duplicate bo'ldgan
-// eng kotta butun sonni chop etishingiz kerak. Masalan
-// [1,1,1,2,2,3,4,4,5,10]
-// Output: 4
+
 package main
 
 import "fmt"
