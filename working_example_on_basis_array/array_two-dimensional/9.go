@@ -8,16 +8,16 @@ import (
 
 func CreateTwoDimensionalArray(rows, columns, randomRange int) [][]int {
 	arr := [][]int{}
-	//code
+	// code
 	for i := 0; i < rows; i++ {
 		a := []int{}
 		for j := 0; j < columns; j++ {
-			//create random number
+			// create random number
 			k := rand.Intn(randomRange)
-			//add elements to the nested array
+			// add elements to the nested array
 			a = append(a, k)
 		}
-		//add array into arr array
+		// add array into arr array
 		arr = append(arr, a)
 	}
 	return arr

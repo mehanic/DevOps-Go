@@ -1,5 +1,0 @@
-1. creating
-2. go.mod:
-3. module
-4. new
-5. printing-clock

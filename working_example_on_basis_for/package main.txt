@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var limit int
+	fmt.Print("Введите число: ")
+	fmt.Scan(&limit)
+
+	sum := sumUpTo(limit)
+	fmt.Printf("Сумма чисел от 0 до %d (не включая): %d\n", limit, sum)
+}
+
+func sumUpTo(n int) int {
+	sum := 0
+	for i := 0; i < n; i++ {
+		sum += i
+	}
+	return sum
+}
+

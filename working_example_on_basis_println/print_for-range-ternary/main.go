@@ -106,11 +106,11 @@ func main() {
 	// array02 = append(array02, 1) No compile
 
 	slice01 := []int{1, 2, 4, 4, 5, 6}
-	slice01 = append(slice01, 7) // el append aumenta el capacity * 2
+	slice01 = append(slice01, 7) 
 	fmt.Println(slice01)
 
 	slice02 := slice01[1:]
-	slice03 := slice01[:len(slice01)-1] // [Desde donde : Cuantas posiciones]
+	slice03 := slice01[:len(slice01)-1] 
 	slice04 := slice01[:1]
 
 	fmt.Println(slice02, slice03, slice04)

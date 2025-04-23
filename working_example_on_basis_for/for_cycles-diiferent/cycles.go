@@ -8,7 +8,7 @@ func main() {
 			fmt.Println(i)
 		}
 	}
-
+	fmt.Println("-----------------------------")
 	for i := 1; i <= 100; i++ {
 		if i%7 != 0 {
 			continue
@@ -16,6 +16,7 @@ func main() {
 
 		fmt.Println(i)
 	}
+	fmt.Println("-----------------------------")
 
 	for i := 1; i <= 100; i++ {
 		if i == 10 {
@@ -25,6 +26,7 @@ func main() {
 		fmt.Println(i)
 	}
 	fmt.Println("After loop")
+	fmt.Println("-----------------------------")
 
 	nums := []int{1, 2, 3, 4, 5}
 	for i := 0; i < len(nums); i++ {
@@ -38,6 +40,7 @@ func main() {
 	for _, element := range nums {
 		fmt.Printf("Element: %d\n", element)
 	}
+	fmt.Println("-----------------------------")
 
 	matrix := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 	for _, row := range matrix {

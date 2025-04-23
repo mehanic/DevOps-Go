@@ -21,23 +21,26 @@ func main() {
 	for i := 0; i < 10; i++ {
 		sum += i
 	}
-	fmt.Println("sum =", sum)
+	fmt.Println("func num")
+	fmt.Println("sum = 45 — потому что ты складываешь числа от 0 до 9.", sum)
 
 	sum2 := 0
-	for sum2 < 100 { // аналог while
+	for sum2 < 100 { // аналог while // Пока sum меньше 100 — выполняем
 		sum2 += 10
 	}
+	fmt.Println("func 2")
 	fmt.Println("sum2 =", sum2)
 
 	sum3 := 0
-	for sum3 < 1000 { // аналог while
+	for sum3 < 10 { // аналог while
 		sum3 += 10
 	}
+	fmt.Println("func 3")
 	fmt.Println("sum3 =", sum3)
-
+	fmt.Println("--------------------------------------------")
 	// Ветвления
 	a := 0
-	for a < 100 {
+	for a < 10 {
 		if a == 10 {
 			fmt.Println("a is 10")
 		} else {
@@ -47,7 +50,7 @@ func main() {
 	}
 
 	a2 := 0
-	for a2 < 100 {
+	for a2 < 10 {
 		i := isTest(a2)
 		if i == 1 {
 			fmt.Println("a2 = 2")
@@ -60,7 +63,7 @@ func main() {
 	}
 
 	a3 := 0
-	for a3 < 100 {
+	for a3 < 10 {
 		if i := isTest(a3); i == 1 {
 			fmt.Println("a3 = 2")
 		} else if i == 2 {
@@ -72,7 +75,7 @@ func main() {
 	}
 
 	a4 := 0
-	for a4 < 100 {
+	for a4 < 10 {
 		j := isTest(a4)
 		switch j {
 		case 1:
@@ -86,7 +89,7 @@ func main() {
 	}
 
 	a5 := 0
-	for a5 < 100 {
+	for a5 < 10 {
 		switch j := isTest(a5); j {
 		case 1:
 			fmt.Println("a5 = 2")
@@ -97,13 +100,14 @@ func main() {
 		}
 		a5++
 	}
+
+	fmt.Println("stack LIFO")
 	// Отложенное выполнения операций
 	// stack, Last In First Out
 	defer fmt.Println("1")
 	defer fmt.Println("2")
 	defer fmt.Println("3")
 	fmt.Println("!!! Отложенное выполнения операций !!!")
-
 }
 
 // Функций

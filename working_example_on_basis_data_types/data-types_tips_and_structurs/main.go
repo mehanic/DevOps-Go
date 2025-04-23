@@ -7,13 +7,6 @@ import (
 	"strings"
 )
 
-// Custom Types
-
-/*
- * Alias Types
- */
-// No methods can be associated with alias types
-
 type (
 	ID        = uint64
 	UUIDAlias = [32]byte
@@ -23,14 +16,9 @@ type (
 
 func aliasTypes() {
 	var myID ID = 1
-	var myIDUint64 = myID
+	myIDUint64 := myID
 	fmt.Println("Alias Type Example - myID as uint64:", myIDUint64)
 }
-
-/*
- * Wrapper Types
- */
-// Wrapper types can have methods associated with them
 
 type IDWrapper uint64
 

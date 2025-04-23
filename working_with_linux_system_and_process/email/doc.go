@@ -1,4 +1,0 @@
-/*
-   gomail
-*/
-package email

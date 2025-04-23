@@ -4,10 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
-// Function to get a formatted full name (from the previous example)
+// Function to get a formatted full name with proper Unicode title-casing
 func getFormattedName(first string, last string, middle ...string) string {
 	var fullName string
 	if len(middle) > 0 {
@@ -15,7 +17,10 @@ func getFormattedName(first string, last string, middle ...string) string {
 	} else {
 		fullName = first + " " + last
 	}
-	return strings.Title(fullName)
+
+	// Используем cases.Title для правильного форматирования заглавных букв
+	titleCaser := cases.Title(language.Und)
+	return titleCaser.String(fullName)
 }
 
 func main() {
@@ -37,13 +42,25 @@ func main() {
 			break
 		}
 
-		formattedName := getFormattedName(first, last)
+		fmt.Print("Please give me a last name: ")
+		scanner.Scan()
+		middle := scanner.Text()
+		if last == "q" {
+			break
+		}
+
+		formattedName := getFormattedName(first, last, middle)
 		fmt.Println("\tNeatly formatted name: " + formattedName + ".")
 	}
 }
 
+
+// go run while-true.go 
 // Enter 'q' at any time to quit.
 
-// Please give me a first name: taya
-// Please give me a last name: naia
-// 	Neatly formatted name: Taya Naia.
+// Please give me a first name: mike
+// Please give me a last name: london
+// Please give me a last name: deiry
+// 	Neatly formatted name: Mike Deiry London.
+
+// Please give me a first name: q

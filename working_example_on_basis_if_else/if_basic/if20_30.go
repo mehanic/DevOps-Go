@@ -155,38 +155,37 @@ func If30(x int16) (description string) {
 	return
 }
 
-func main()  {
+func main() {
 	// Example for If20:
-fmt.Println(If20(10, 7, 12)) // Output: ("b", 3)
+	fmt.Println(If20(10, 7, 12)) // Output: ("b", 3)
 
-// Example for If21:
-fmt.Println(If21(0, 5)) // Output: 2
+	// Example for If21:
+	fmt.Println(If21(0, 5)) // Output: 2
 
-// Example for If22:
-fmt.Println(If22(-3, 4)) // Output: 2
+	// Example for If22:
+	fmt.Println(If22(-3, 4)) // Output: 2
 
-// Example for If23:
-fmt.Println(If23(0, 0, 1, 0, 0, 1)) // Output: (1, 1)
+	// Example for If23:
+	fmt.Println(If23(0, 0, 1, 0, 0, 1)) // Output: (1, 1)
 
-// Example for If24:
-fmt.Println(If24(3)) // Output: 1.4112000805986722
+	// Example for If24:
+	fmt.Println(If24(3)) // Output: 1.4112000805986722
 
-// Example for If25:
-fmt.Println(If25(3)) // Output: 6
+	// Example for If25:
+	fmt.Println(If25(3)) // Output: 6
 
-// Example for If26:
-fmt.Println(If26(1.5)) // Output: 2.25
+	// Example for If26:
+	fmt.Println(If26(1.5)) // Output: 2.25
 
-// Example for If27:
-fmt.Println(If27(4)) // Output: 1
+	// Example for If27:
+	fmt.Println(If27(4)) // Output: 1
 
-// Example for If28:
-fmt.Println(If28(2024)) // Output: 366
+	// Example for If28:
+	fmt.Println(If28(2024)) // Output: 366
 
-// Example for If29:
-fmt.Println(If29(-5)) // Output: "Negative odd"
+	// Example for If29:
+	fmt.Println(If29(-5)) // Output: "Negative odd"
 
-// Example for If30:
-fmt.Println(If30(23)) // Output: "Odd two-digit"
-
+	// Example for If30:
+	fmt.Println(If30(23)) // Output: "Odd two-digit"
 }

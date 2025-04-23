@@ -1,4 +1,0 @@
-/*
-AES
-*/
-package cryptographic

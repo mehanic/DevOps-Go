@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
+
+	"golang.org/x/text/cases"
 )
 
 func main() {
@@ -10,7 +11,7 @@ func main() {
 
 	for _, magician := range magicians {
 		// Capitalize the first letter of the magician's name
-		formattedName := strings.Title(magician)
+		formattedName := cases.Title(magician)
 
 		// Print the messages
 		fmt.Printf("%s, that was a great trick!\n", formattedName)

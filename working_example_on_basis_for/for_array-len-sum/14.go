@@ -8,7 +8,9 @@ func main() {
 	sumi := 0
 	for i := 0; i < n; i++ {
 		sumi = sumi + numbers[i]
+		fmt.Println(sumi)
 	}
+	// n := len(numbers) — вычисление длины numbers
 	fmt.Println(sumi / n)
 }
 

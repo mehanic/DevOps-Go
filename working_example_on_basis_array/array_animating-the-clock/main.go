@@ -102,15 +102,9 @@ func main() {
 		zero, one, two, three, four, five, six, seven, eight, nine,
 	}
 
-	// For Go Playground, do not use this.
 	screen.Clear()
 
-	// Go Playground will not run an infinite loop.
-	// So, instead, you may loop for 1000 times:
-	// for i := 0; i < 1000; i++ {
 	for {
-		// For Go Playground, use this instead:
-		// fmt.Print("\f")
 		screen.MoveTopLeft()
 
 		now := time.Now()
@@ -131,7 +125,6 @@ func main() {
 			fmt.Println()
 		}
 
-		// pause for 1 second
 		time.Sleep(time.Second)
 	}
 }

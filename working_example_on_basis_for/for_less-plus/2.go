@@ -15,9 +15,8 @@ func main() {
 	//i=4 +
 	//i=6
 	fmt.Println("for start")
-	for i := 0; i < 5; i+=2 {
-		fmt.Println("Yerassyl")
+	for i := 0; i < 5; i += 2 {
+		fmt.Println("Toronto")
 	}
 	fmt.Println("for end")
-
 }

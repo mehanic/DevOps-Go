@@ -13,7 +13,7 @@ func main() {
 	// sum += 4
 	// sum += 5
 
-	for i := 1; i <= 1000; i++ {
+	for i := 1; i <= 100; i++ {
 		sum += i
 	}
 
@@ -33,14 +33,10 @@ func main1() {
 		if i > 5 {
 			break
 		}
-
 		sum += i
-
 		fmt.Println(i, "-->", sum)
-
 		i++
 	}
-
 	fmt.Println(sum)
 }
 
@@ -49,25 +45,19 @@ func main2() {
 		sum int
 		i   = 3
 	)
-
 	for {
 		if i > 10 {
 			break
 		}
-
 		if i%2 != 0 {
 			// this continue creates an endless loop
 			// since the code never increases the i
 			continue
 		}
-
 		sum += i
-
 		fmt.Println(i, "-->", sum)
-
 		i++
 	}
-
 	fmt.Println(sum)
 }
 
@@ -78,30 +68,23 @@ func main3() {
 		sum int
 		i   = 1
 	)
-
 	for {
 		if i > 10 {
 			break
 		}
-
 		if i%2 != 0 {
 			// just by putting this here we solve the problem
 			i++
 			continue
 		}
-
 		sum += i
-
 		fmt.Println(i, "-->", sum)
-
 		i++
 	}
-
 	fmt.Println(sum)
 }
 
 //---
-
 
 // 500500
 // 1 --> 1

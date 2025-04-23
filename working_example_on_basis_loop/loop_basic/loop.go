@@ -2,60 +2,114 @@ package main
 
 import "fmt"
 
+// Глобальные переменные, доступные во всех функциях
+var sl = []int{1, 2, 3}                     // Срез
+var profile = map[int]string{1: "Hoasker", 2: "RZ"} // Карта
+
 func main() {
+	// Бесконечный цикл for + break
 	for {
 		fmt.Println("Loop iteration")
 		break
 	}
 
+	loopWithCondition("loopWithCondition")
+	fmt.Println("------")
+	loopWithContinue("loopWithContinue")
+	fmt.Println("------")
+	whileStyleLoop("whileStyleLoop")
+	fmt.Println("------")
+	cStyleLoop("cStyleLoop")
+	fmt.Println("------")
+	rangeOverSlice("rangeOverSlice")
+	fmt.Println("------")
+	rangeOverSliceWithValues("rangeOverSliceWithValues")
+	fmt.Println("------")
+	rangeOverMapKeys("rangeOverMapKeys")
+	fmt.Println("------")
+	rangeOverMapKeysAndValues("rangeOverMapKeysAndValues")
+	fmt.Println("------")
+	rangeOverMapValues("rangeOverMapValues")
+	fmt.Println("------")
+	rangeOverString("rangeOverString")
+}
+
+// Цикл for с логическим условием
+func loopWithCondition(name string) {
 	isRun := true
 	for isRun {
-		fmt.Println("Loop iteration with condition")
+		fmt.Println(name, "Loop iteration with condition")
 		isRun = false
 	}
+}
 
+// for с continue
+func loopWithContinue(name string) {
 	for i := 0; i < 2; i++ {
-		fmt.Println("Loop iteration", i)
+		fmt.Println(name, "Loop iteration", i)
 		if i == 1 {
 			continue
 		}
 	}
+}
 
-	sl := []int{1, 2, 3}
+// while-стиль цикл (for с логическим условием)
+func whileStyleLoop(name string) {
 	idx := 0
-
 	for idx < len(sl) {
-		fmt.Println("while-stype loop edx:", idx, "value:", sl[idx])
+		fmt.Println(name, "while-style loop idx:", idx, "value:", sl[idx])
 		idx++
 	}
+}
 
+// for в C-стиле
+func cStyleLoop(name string) {
 	for i := 0; i < len(sl); i++ {
-		fmt.Println("c-style loop", i, sl[i])
+		fmt.Println(name, "c-style loop", i, sl[i])
 	}
+}
+
+// range по срезу (индексы)
+func rangeOverSlice(name string) {
 	for idx := range sl {
-		fmt.Println("range slice by index", idx)
+		fmt.Println(name, "range slice by index", idx)
 	}
+}
+
+// range по срезу (индексы + значения)
+func rangeOverSliceWithValues(name string) {
 	for idx, val := range sl {
-		fmt.Println("range slice by idx-value", idx, val)
+		fmt.Println(name, "range slice by idx-value", idx, val)
 	}
+}
 
-	profile := map[int]string{1: "Hoasker", 2: "RZ"}
-
+// range по map (только ключи)
+func rangeOverMapKeys(name string) {
 	for key := range profile {
-		fmt.Println("range map by key", key)
+		fmt.Println(name, "range map by key", key)
 	}
+}
 
+// range по map (ключи + значения)
+func rangeOverMapKeysAndValues(name string) {
 	for key, val := range profile {
-		fmt.Println("range map by key-val", key, val)
+		fmt.Println(name, "range map by key-val", key, val)
 	}
+}
 
+// range по map (только значения)
+func rangeOverMapValues(name string) {
 	for _, val := range profile {
-		fmt.Println("range map by val", val)
+		fmt.Println(name, "range map by val", val)
 	}
+}
 
+// range по строке (Unicode-символы)
+func rangeOverString(name string) {
 	str := "Hello, World!"
 	for pos, char := range str {
-		fmt.Printf("%#U at pos %d\n", char, pos)
+		fmt.Printf("%s %#U at pos %d\n", name, char, pos)
+
 	}
 }
 

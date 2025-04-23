@@ -1,0 +1,21 @@
+package main2
+
+import "fmt"
+
+func main() {
+	main6()
+}
+
+func main6() {
+	sum := 0
+	step := 1 // счётчик шагов
+
+	for sum < 100 {
+		sum += 10
+		fmt.Printf("Шаг %d: sum = %d\n", step, sum)
+		step++
+	}
+
+	fmt.Println("Цикл завершён. Итоговая сумма:", sum)
+}
+

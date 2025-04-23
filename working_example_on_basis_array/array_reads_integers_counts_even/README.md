@@ -92,3 +92,39 @@ Let’s go through an example.
 - The program is designed to take `n` integers, store them in an array, and count how many of those integers are even.
 - It uses basic control structures like loops, conditionals, and array operations.
 - The `counter` holds the number of even integers found in the array.
+
+
+
+"golang autocomplit
+lua << EOF
+local cmp = require'cmp'
+local luasnip = require'luasnip'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+    { name = 'path' }
+  })
+})
+
+local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lspconfig.gopls.setup({
+  capabilities = capabilities,
+})
+EOF
