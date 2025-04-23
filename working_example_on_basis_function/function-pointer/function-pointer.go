@@ -12,8 +12,3 @@ func main() {
 	changeValue(d)              // изменяем значение
 	fmt.Println("d after:", d)  // 5 - значение не изменилось
 }
-
-warning: adding embedded git repository: working_with_service_postgresql/database/RedisTest
-warning: adding embedded git repository: working_with_service_postgresql/database/go-postgres
-warning: adding embedded git repository: working_with_service_postgresql/database/golang-rabbitmq-tutor
-
