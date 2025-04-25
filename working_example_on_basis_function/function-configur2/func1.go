@@ -16,8 +16,6 @@ func hi(name string) (msg string) {
 }
 
 func main() {
-
 	// hi("foo")
-	fmt.Println(hi("foo"))
-
+	fmt.Println(hi(" foo"))
 }

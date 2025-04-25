@@ -5,11 +5,11 @@ import (
 )
 
 func main() {
-
 	f1 := func() {
 		fmt.Println("Function expression")
 	}
 	f1()
+	// func()
 	fmt.Printf("%T\n", f1)
 
 	f2 := func(x int, y int) {
@@ -17,3 +17,7 @@ func main() {
 	}
 	f2(2, 3)
 }
+
+// Function expression
+// func()
+// Sum of x and y is 5

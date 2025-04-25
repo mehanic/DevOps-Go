@@ -22,4 +22,3 @@ func main() {
 	// Calling the function with one argument
 	describePet("william")
 }
-
