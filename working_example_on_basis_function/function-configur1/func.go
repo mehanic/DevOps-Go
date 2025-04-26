@@ -64,15 +64,19 @@ func main() {
 	}
 	println(c(5, 10))
 
+	fmt.Println("----------------")
+	// someFunction
 	sqrt := func(x int) int {
 		return x * x
 	}
 
 	test(sqrt)
 	fmt.Println("----------------")
+	// test2
 	test2("test2")()
 	fmt.Println("----------------")
-	mathFunc2(3, 5)
+	s, sub, m, d := mathFunc2(3, 5)
+	println(s, sub, m, d)
 }
 
 // // Function declarations
