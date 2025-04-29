@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "e84ef620-d0dc-4f02-bec7-bb0536224f8e",
+		"name": "GolangAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23406649"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\" : \"35232650\" ,\n    \"name\" : \"Park Avenue Signature Collection Premium Body Spray for Men\",\n    \"main\" : \"Beauty & health\", \n    \"sub\" : \"Beauty & Grooming\" ,\n    \"price\" : 422.90,\n    \"brand\" : \"Park Avenue\",\n    \"isactive\" : true\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProductDetails",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id",
+						"value": "34253562",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/productdetails/34253562",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"productdetails",
+						"34253562"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActivateProduct",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "id=\"53242635\""
+				},
+				"url": {
+					"raw": "localhost:8080/activateproduct?id=34253562",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"activateproduct"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "34253562"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InactivateProduct",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/inactivateproduct?id=53242635",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inactivateproduct"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "53242635"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

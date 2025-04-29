@@ -1,0 +1,1 @@
+Use Case: Necessary if the command relies on bash-specific features (like arrays, command substitution, or specific expansions). It ensures that bash is used rather than the default shell.
