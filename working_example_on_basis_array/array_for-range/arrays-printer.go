@@ -10,7 +10,7 @@ func main() {
 		{"First Name", "Last Name", "Nickname"},
 		{"Albert", "Einstein", "emc2"},
 		{"Isaac", "Newton", "apple"},
-		{"Stephen", "Hawking", "blackhole"},
+		{"Stephen", "Hawking", "dunai"},
 		{"Marie", "Curie", "radium"},
 		{"Charles", "Darwin", "fittest"},
 	}
@@ -23,13 +23,12 @@ func main() {
 			fmt.Println(strings.Repeat("=", 50))
 		}
 	}
-
 }
 
 // First Name      Last Name       Nickname
 // ==================================================
 // Albert          Einstein        emc2
 // Isaac           Newton          apple
-// Stephen         Hawking         blackhole
+// Stephen         Hawking         dunai
 // Marie           Curie           radium
 // Charles         Darwin          fittest

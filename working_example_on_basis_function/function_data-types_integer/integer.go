@@ -1,4 +1,4 @@
-package integer
+package main
 
 func Integer1(l int64) (n int64) {
 	n = l / 100

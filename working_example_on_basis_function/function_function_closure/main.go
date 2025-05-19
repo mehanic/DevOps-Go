@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	name := "Prasetiyo"
+	name := "Peter"
 	counter := 0
 
 	increment := func() {
@@ -16,3 +16,4 @@ func main() {
 	increment()
 	increment()
 }
+

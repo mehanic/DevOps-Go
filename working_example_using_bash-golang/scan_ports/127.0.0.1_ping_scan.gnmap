@@ -1,0 +1,3 @@
+# Nmap 7.94SVN scan initiated Fri Oct 18 19:04:47 2024 as: nmap -sn -PE -n -oA 127.0.0.1_ping_scan 127.0.0.1
+Host: 127.0.0.1 ()	Status: Up
+# Nmap done at Fri Oct 18 19:04:47 2024 -- 1 IP address (1 host up) scanned in 0.00 seconds

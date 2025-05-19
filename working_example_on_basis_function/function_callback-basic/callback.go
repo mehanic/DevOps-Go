@@ -21,9 +21,11 @@ func main() {
 	}
 
 	result = doSomething(multipleCallback, "multi")
+	fmt.Println(result)
 }
 
 // ╰─λ go run callback.go                                                                                                                                               0 (0.002s) < 12:48:13
 // hey
 // 6
 // multi
+// 6

@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// аргументы -> это входные параметры которые необходимы для работы процедуры или фукнции
 func printData(word string) {
 	fmt.Println(word)
 }
@@ -13,7 +12,7 @@ func getSum(a, b int) {
 }
 
 func main() {
-	printData("Hello yerassyl")
+	printData("Hello Mike")
 	getSum(3, 4)
 }
 

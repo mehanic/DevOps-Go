@@ -15,6 +15,52 @@ func main() {
 	showN()
 }
 
+func show(n int) {
+	// can't access main's local
+	// fmt.Printf("show : n = %d\n", local)
+	fmt.Printf("show  → n = %d\n", n)
+}
+
+// wrong: incr can't access to main's `local`
+func incrWrong(n int) {
+	// n := local
+	n++
+	// can't return (there are no result values)
+	// return n
+}
+
+func incr(n int) int {
+	n++
+	return n
+}
+
+func incrBy(n, factor int) int {
+	return n * factor
+}
+
+func incrByStr(n int, factor string) (int, error) {
+	m, err := strconv.Atoi(factor)
+	n = incrBy(n, m)
+	return n, err
+}
+
+func sanitize(n int, err error) int {
+	if err != nil {
+		return 0
+	}
+	return n
+}
+
+func limit(n, lim int) (m int) {
+	// var m int
+	m = n
+	if m >= lim {
+		m = lim
+	}
+	// return m
+	return
+}
+
 func showN() {
 	if N == 0 {
 		return
@@ -73,52 +119,6 @@ func main1() {
 
 	local = limit(incrBy(local, 5), 2000)
 	show(local)
-}
-
-func show(n int) {
-	// can't access main's local
-	// fmt.Printf("show : n = %d\n", local)
-	fmt.Printf("show  → n = %d\n", n)
-}
-
-// wrong: incr can't access to main's `local`
-func incrWrong(n int) {
-	// n := local
-	n++
-	// can't return (there are no result values)
-	// return n
-}
-
-func incr(n int) int {
-	n++
-	return n
-}
-
-func incrBy(n, factor int) int {
-	return n * factor
-}
-
-func incrByStr(n int, factor string) (int, error) {
-	m, err := strconv.Atoi(factor)
-	n = incrBy(n, m)
-	return n, err
-}
-
-func sanitize(n int, err error) int {
-	if err != nil {
-		return 0
-	}
-	return n
-}
-
-func limit(n, lim int) (m int) {
-	// var m int
-	m = n
-	if m >= lim {
-		m = lim
-	}
-	// return m
-	return
 }
 
 //

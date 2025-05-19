@@ -1,0 +1,2 @@
+# Nmap 7.94SVN scan initiated Sun Oct 20 16:25:13 2024 as: nmap -T4 --open -sn -PS21-23,25,53,80,443,3389 -PO -PE -PM -PP -oG alive.gnmap 192.168.1.0/24
+# Nmap done at Sun Oct 20 16:25:28 2024 -- 256 IP addresses (0 hosts up) scanned in 14.44 seconds

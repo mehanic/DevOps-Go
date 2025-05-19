@@ -13,7 +13,7 @@ func wrapper() func() int {
 }
 
 func main() {
-	increment := wrapper
+	increment := wrapper()
 	fmt.Println(increment())
 	fmt.Println(increment())
 }

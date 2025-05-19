@@ -1,0 +1,2 @@
+# Nmap 7.94SVN scan initiated Sun Oct 20 16:23:17 2024 as: nmap -T4 --open -iL targets -p 1-65535 -oG ports.gnmap
+# Nmap done at Sun Oct 20 16:23:17 2024 -- 0 IP addresses (0 hosts up) scanned in 0.03 seconds

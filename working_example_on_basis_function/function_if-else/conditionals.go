@@ -1,17 +1,25 @@
-package conditionals
+package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Conditionals() {
-	var hesap float64 = 10000
-	var cekilmekistenen float64 = 4000
-	if cekilmekistenen > hesap {
-		fmt.Println("Geçersiz Tutar")
+	var balance float64 = 10000
+	var amountToWithdraw float64 = 4000
+
+	if amountToWithdraw > balance {
+		fmt.Println("Invalid amount.")
 	}
-	if cekilmekistenen <= hesap {
-		fmt.Println("Para bitti")
-		hesap = hesap - cekilmekistenen
-		fmt.Println("Bitti. Hesaptaki Tutar : " + fmt.Sprintf("%f", hesap))
-		fmt.Printf("Bitti.Hesaptaki Tutar : %v", hesap)
+
+	if amountToWithdraw <= balance {
+		fmt.Println("Withdrawal complete.")
+		balance = balance - amountToWithdraw
+		fmt.Println("Remaining balance: " + fmt.Sprintf("%f", balance))
+		fmt.Printf("Remaining balance: %v\n", balance)
 	}
+}
+
+func main() {
+	Conditionals()
 }

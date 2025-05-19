@@ -1,0 +1,1 @@
+123 is a number, ABC is alphabetic & aBC123 is alphanumeric.

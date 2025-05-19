@@ -66,3 +66,16 @@ func main() {
 	k := [...]int{1, 3, 5, 7}
 	log.Printf("k type=%T, k length=%d, k capacity=%d, k=%v\n", k, len(k), cap(k), k)
 }
+
+//:!go run DevOps-Go/working_example_on_basis_array/array_declare_initialize_manipulate_slices_arrays/main.go
+//2025/05/11 17:16:36 a type=[]int, a length=0, a capacity=0, a=[], nil? true
+//2025/05/11 17:16:36 b type=*[]int, b length=0, b capacity=0, b=&[], nil? false
+//2025/05/11 17:16:36 c type=[]int, c length=5, c capacity=5, c=[0 0 0 0 0], nil? false
+//2025/05/11 17:16:36 d type=[]int, d length=5, d capacity=100, d=[0 0 0 0 0], nil? false
+//2025/05/11 17:16:36 e type=[3]int, e length=3, e capacity=3, e=[0 0 0]
+//2025/05/11 17:16:36 f type=*[3]int, f length=3, f capacity=3, f=&[0 0 0], nil? false
+//2025/05/11 17:16:36 g type=[]int, g length=3, g capacity=3, g=[1 3 6], nil? false
+//2025/05/11 17:16:36 h type=[]int, h length=0, h capacity=0, h=[], nil? false
+//2025/05/11 17:16:36 i type=[]main.champion, i length=2, i capacity=2, i=[{Evelynn [Assassin] [Demon] 3} {Vi [Brawler] [Hextech] 3}], nil? false
+//2025/05/11 17:16:36 j type=[3]int, j length=3, j capacity=3, j=[1 3 5]
+//2025/05/11 17:16:36 k type=[4]int, k length=4, k capacity=4, k=[1 3 5 7]

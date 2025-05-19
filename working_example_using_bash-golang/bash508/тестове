@@ -1,0 +1,17 @@
+Write a script that will optionally accept a timezone value and will print the list of users on the given timezone following a summary in the first line. If no timezone is given, then your script will list all the users without a summary line.
+
+Users should be printed with only their names flattened as <title> <name> <surname>; e.g: Mr Daniel Wuollet
+Sample output for <your_script> -t +10:00
+2/50 users in timezone +10:00
+Madame Roswitha Barbier
+Miss Nicoline Mortensen
+
+Sample output (without timezone) for <your_script>
+Ms Mandy Collins
+Miss Emeli Nesland
+Miss Ariana Wood
+Miss Norma Patiño
+
+
+
+

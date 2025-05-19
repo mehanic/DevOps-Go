@@ -1,0 +1,6 @@
+Username UID GID Login_date Shell
+user1 1001 1001 2024-10-01 /bin/bash
+user2 1002 1001 2024-10-02 /bin/bash
+root 0 0 2024-10-03 /bin/bash
+user3 1003 1001 2024-10-04 /bin/bash
+

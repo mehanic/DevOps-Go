@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
-	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
-// greetUsers prints a simple greeting to each user in the list.
 func greetUsers(names []string) {
+	titleCaser := cases.Title(language.English) // Создаём преобразователь регистра
 	for _, name := range names {
-		msg := "Hello, " + strings.Title(name) + "!"
+		msg := "Hello, " + titleCaser.String(name) + "!"
 		fmt.Println(msg)
 	}
 }
@@ -17,4 +19,3 @@ func main() {
 	usernames := []string{"hannah", "ty", "margot"}
 	greetUsers(usernames)
 }
-

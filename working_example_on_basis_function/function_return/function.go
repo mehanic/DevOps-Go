@@ -1,4 +1,3 @@
-
 package main
 
 import "fmt"
@@ -12,26 +11,23 @@ func fullName(firstName string, lastName string) string {
 	return fullName
 }
 
-
 func main1() {
-	fmt.Println(fullName("Ivan", "Mazepa")) 
+	fmt.Println(fullName1("Ivan", "Mazepa"))
 }
 
 func fullName1(firstName string, lastName string) string {
 	if firstName == "" || lastName == "" {
 		return "First Name or Last Name is Empty"
 	} else {
-		return firstName + " " + lastName 
+		return firstName + " " + lastName
 	}
 }
 
-
-
 func main2() {
-	totalScore := askQuestion(1, "mmwk7a")
-    totalScore += askQuestion(2, "kmzway87aa")
-    totalScore += askQuestion(3, "bkbmanta8")
-    fmt.Println("Your Score: ", totalScore)
+	totalScore := askQuestion2(1, "mmwk7a")
+	totalScore += askQuestion2(2, "kmzway87aa")
+	totalScore += askQuestion2(3, "bkbmanta8")
+	fmt.Println("Your Score: ", totalScore)
 }
 
 func askQuestion2(number int, question string) int {
@@ -44,14 +40,11 @@ func askQuestion2(number int, question string) int {
 	return 100
 }
 
-
-
-
 func main3() {
-	totalScore := askQuestion(1, "mmwk7a")
-    totalScore += askQuestion(2, "kmzway87aa")
-    totalScore += askQuestion(3, "bkbmanta8")
-    fmt.Println("Your Score: ", totalScore)
+	totalScore := askQuestion3(1, "mmwk7a")
+	totalScore += askQuestion3(2, "kmzway87aa")
+	totalScore += askQuestion3(3, "bkbmanta8")
+	fmt.Println("Your Score: ", totalScore)
 }
 
 func askQuestion3(number int, question string) int {

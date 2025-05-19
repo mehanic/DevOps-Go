@@ -48,6 +48,6 @@ func main() {
 	return
 }
 
-// ╰─λ go run functions.go                                             0 (0.001s) < 23:57:05
+// ╰─λ go run functions.go
 // in := []int{1, 2, 3, 4}
 // [1 2 3 4] 10

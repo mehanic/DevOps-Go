@@ -2,32 +2,36 @@ package main
 
 import "fmt"
 
+// Function to demonstrate finding the largest number in a 1D array
 func Array3() {
-
-	sayilar := [5]int{233, 24, 56, 87, 23}
-	fmt.Println(sayilar)
+	numbers := [5]int{233, 24, 56, 87, 23}
+	fmt.Println(numbers)
 	fmt.Println("-------------------")
-	enBüyük := sayilar[0] //The variable enBüyük is initialized to the first element of the array, sayilar[0], which is 233. This variable will store the maximum value found during iteration.
-	for i := 0; i < len(sayilar); i++ {
-		fmt.Println(sayilar[i])
-		if sayilar[i] > enBüyük {
-			enBüyük = sayilar[i]
-		}
 
+	// Initialize maxValue with the first element of the array
+	maxValue := numbers[0]
+
+	// Iterate through the array to find the maximum value
+	for i := 0; i < len(numbers); i++ {
+		fmt.Println(numbers[i])
+		if numbers[i] > maxValue {
+			maxValue = numbers[i]
+		}
 	}
-	fmt.Println(enBüyük)
+	fmt.Println(maxValue)
 	fmt.Println("-------------------")
 }
 
+// Function to demonstrate working with a 2D array
 func Array4() {
-	var sayilar [2][3]int
-	sayilar[0][0] = 12
-	sayilar[0][1] = 31
-	sayilar[0][2] = 98
-	sayilar[1][0] = 23
-	sayilar[1][1] = 54
-	sayilar[1][2] = 13
-	fmt.Println(sayilar)
+	var numbers [2][3]int
+	numbers[0][0] = 12
+	numbers[0][1] = 31
+	numbers[0][2] = 98
+	numbers[1][0] = 23
+	numbers[1][1] = 54
+	numbers[1][2] = 13
+	fmt.Println(numbers)
 }
 
 func main() {

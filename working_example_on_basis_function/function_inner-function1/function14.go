@@ -4,7 +4,7 @@ import "fmt"
 
 // Function to display the welcome message
 func welcomeMsg() {
-	fmt.Println("Welcome to Python Scripting")
+	fmt.Println("Welcome to Golang Scripting")
 	fmt.Println("Python is easy to learn")
 }
 
