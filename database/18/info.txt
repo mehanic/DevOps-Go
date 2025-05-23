@@ -1,0 +1,33 @@
+1) создать аккаунт
+2) скачать docker desktop
+3)
+[cmd]
+docker login
+docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
+4) golang rabbitmq
+
+https://www.rabbitmq.com/tutorials/tutorial-one-go.html
+
+
+установка на mac os rabbitmq без docker
+
+https://www.rabbitmq.com/install-homebrew.html
+
+rpc remote procedure call
+
+server -> procedures, functions,
+
+call -> method
+
+users-lib[CRUD] amqp
+users-api
+
+products-lib[CRUD] amqp
+products-api
+
+orders-lib[CRUD] amqp
+orders-api
+
+start-api[login,register] http
+
+go get github.com/djumanoff/amqp

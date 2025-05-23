@@ -1,1 +1,7 @@
  This is some random text
+
+▪️ CIM (Contract Individual de Muncă) – Individual Employment Contract (standard work contract with an employer, including salary, benefits, and legal protections).
+Is an equivalent of offcialemploymnt type. It provide some guarantees to the employee, they are more secured by law. Taxes 43% 
+
+▪️ PFA (Persoană Fizică Autorizată) – Authorized Natural Person (self-employed/freelancer who pays their own taxes and contributions).
+▪️ SRL (Societate cu Răspundere Limitată) – Limited Liability Company

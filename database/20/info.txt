@@ -1,0 +1,30 @@
+User
+    id
+    username
+    password
+
+acl
+    user_roles:
+        id:
+        user_id:
+        role_id
+    role:
+        id
+        name
+    role_permissions:
+        id
+        role_id
+        permission_id
+    permissions:
+        id
+        name
+        resource:string(users,products,orders,posts,sells)
+        action:string(read, create, full-control)
+
+roles: moderator
+            ->permissions[create->products, create->orders]
+       admin
+            ->permissions[full-control->products, full-control-orders]
+
+
+http/amqp -> command -> service -> postgre/mongodb

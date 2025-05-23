@@ -1,0 +1,13 @@
+output   = "go-postgres/db/models"
+wipe     = true
+no-tests = true
+add-enum-types = true
+
+[psql]
+  dbname = "app"
+  host   = "localhost"
+  user   = "postgres"
+  pass   = "postgres"
+  port   = 5432
+  sslmode = "disable"
+  whitelist = ["authors", "publishers", "users", "books", "loans"]

@@ -1,0 +1,31 @@
+interface Library
+
+
+class Book implement Library
+
+Library r1 = new Book()
+
+
+class Book():
+
+    def __init__(self):
+        pass
+
+    def writeSomething(self):
+        print("sdsd")
+
+
+b1 := Book()
+b1.writeSomething()
+
+
+type Book struct{
+
+}
+
+func(b *book) writeSomething(){
+    fmt.Println("sdsdd")
+}
+
+b1 := &Book{}
+b1.writeSomething()

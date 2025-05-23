@@ -1,0 +1,25 @@
+api -> [https/http] -> (endpoints)
+/link -> func Link(){}
+
+library -> где лежит основной код и реализована основная механика
+
+
+routes (/link)
+
+endpoints -> за получение и отправну данных из вне (handler)
+
+service -> отвечает за обработку данных которые были получены из вне
+
+store -> отвечает за CRUD какой либо модели
+
+
+go get github.com/google/uuid
+go get go.mongodb.org/mongo-driver/mongo
+
+
+User
+    Id
+    Username
+    Password
+
+bcrypt

@@ -1,0 +1,13 @@
+common16
+users16
+users-api16
+
+go/src/github.com/kirigaikabuto/
+
+
+users-api <amqp endpoitns> [users]->CRUD
+products-api <amqp endpoints> [products]->CRUD
+orders-api <amqp endpoints> [orders]->CRUD
+
+auth-api - >[login,register,password]
+mgmt-api ->[makeOrder,AddProduct]
