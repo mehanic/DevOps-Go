@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -46,12 +45,6 @@ func main() {
 	for turn := 1; turn <= maxTurns; turn++ {
 		n := rand.Intn(guess) + 1
 
-		// Better, why?
-		//
-		// Instead of nesting the if statement into
-		//   another if statement; it simply continues.
-		//
-		// TLDR: Avoid nested statements.
 		if n != guess {
 			continue
 		}
