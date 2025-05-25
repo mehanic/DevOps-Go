@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
-	"time"
+	// "time"
 )
 
 const (
@@ -22,7 +22,7 @@ Wanna play?
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	//	rand.Seed(time.Now().UnixNano())
 
 	args := os.Args[1:]
 
