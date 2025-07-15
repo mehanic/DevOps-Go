@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-
 func main() {
 	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 	newArr := GetOnlyEven(arr)
 	fmt.Println(newArr)
+	main1()
 }
 
 func GetOnlyEven(arr []int) []int {
@@ -26,4 +26,15 @@ func CheckForEven(k int) bool {
 	return false
 }
 
-// [2 4 6 8]
+func main1() {
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	evens := []int{}
+
+	for _, val := range arr {
+		if val%2 == 0 {
+			evens = append(evens, val)
+		}
+	}
+
+	fmt.Println(evens)
+}

@@ -12,11 +12,12 @@ func main() {
 	maxi := 0
 	for i := 0; i < n-2; i++ {
 		sumi = arr[i] + arr[i+1] + arr[i+2]
+		fmt.Println("sumi", sumi)
 		if sumi > maxi {
 			maxi = sumi
 		}
 	}
-	fmt.Println(maxi)
+	fmt.Println("maxi: ", maxi)
 }
 
 // [1 2 3 4 1 2]

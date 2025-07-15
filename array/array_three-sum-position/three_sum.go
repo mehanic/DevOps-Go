@@ -48,5 +48,5 @@ func main() {
 	fmt.Println("Unique triplets that sum to zero:", result)
 }
 
-//Input array: [-1 0 1 2 -1 -4]
-//Unique triplets that sum to zero: [[-1 -1 2] [-1 0 1]]
+// Input array: [-1 0 1 2 -1 -4]
+// Unique triplets that sum to zero: [[-1 -1 2] [-1 0 1]]

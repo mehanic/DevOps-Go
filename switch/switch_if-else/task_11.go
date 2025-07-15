@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	// var n = -32121. Shu raqamni reverse qling.
+	// var n = -32121.
 	// var result = -12132
 
 	var (

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // Function to demonstrate finding the largest number in a 1D array
-func Array3() {
+func Array1() {
 	numbers := [5]int{233, 24, 56, 87, 23}
 	fmt.Println(numbers)
 	fmt.Println("-------------------")
@@ -22,8 +22,7 @@ func Array3() {
 	fmt.Println("-------------------")
 }
 
-// Function to demonstrate working with a 2D array
-func Array4() {
+func Array2() {
 	var numbers [2][3]int
 	numbers[0][0] = 12
 	numbers[0][1] = 31
@@ -35,8 +34,8 @@ func Array4() {
 }
 
 func main() {
-	Array3()
-	Array4()
+	//	Array1()
+	Array2()
 }
 
 // [233 24 56 87 23]

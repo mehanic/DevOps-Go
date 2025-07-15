@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// @leet start
 func containsDuplicate(nums []int) bool {
 	seen := make(map[int]bool)
 
@@ -29,5 +28,3 @@ func main() {
 	fmt.Println("Example 2:", example2)
 	fmt.Println("Contains duplicate?", containsDuplicate(example2)) // true
 }
-
-// @leet end

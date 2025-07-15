@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-// rotate rotates the array to the right by k steps.
 func rotate(nums []int, k int) {
 	n := len(nums)
 	k = k % n
@@ -13,7 +12,6 @@ func rotate(nums []int, k int) {
 	reverse(nums, 0, n-1)   // Reverse the whole array
 }
 
-// reverse helper function to reverse elements in-place.
 func reverse(slice []int, a, b int) {
 	for a < b {
 		slice[a], slice[b] = slice[b], slice[a]
@@ -23,7 +21,6 @@ func reverse(slice []int, a, b int) {
 }
 
 func main() {
-	// Test the rotate function
 	nums := []int{1, 2, 3, 4, 5, 6, 7}
 	k := 3
 	fmt.Println("Original array:", nums)
@@ -31,5 +28,5 @@ func main() {
 	fmt.Println("Array after rotation:", nums)
 }
 
-//Original array: [1 2 3 4 5 6 7]
-//Array after rotation: [5 6 7 1 2 3 4]
+// Original array: [1 2 3 4 5 6 7]
+// Array after rotation: [5 6 7 1 2 3 4]

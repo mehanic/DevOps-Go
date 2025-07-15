@@ -14,8 +14,9 @@ func replaceElements(a []int) []int {
 func main() {
 	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	arr2 := replaceElements(arr)
-	fmt.Println(arr)
-	fmt.Println(arr2)
+
+	fmt.Println("Исходный массив после изменений:", arr)
+	fmt.Println("Новый массив:", arr2)
 }
 
 // [1 0 3 0 5 0 7 0 9 0]

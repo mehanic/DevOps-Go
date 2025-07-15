@@ -3,7 +3,6 @@ package arrays
 import "fmt"
 
 func CreateMultidimensionalArray() {
-
 	var countries_and_cities [3][2]string
 
 	countries_and_cities[0][0] = "Istanbul"
@@ -20,5 +19,4 @@ func CreateMultidimensionalArray() {
 			fmt.Println(countries_and_cities[ind][sind])
 		}
 	}
-
 }

@@ -11,7 +11,3 @@ func main() {
 	fmt.Println(x)
 	fmt.Println(len(x))
 }
-
-// [0 0 0 0 0]
-// [0 0 0 100 0]
-// 5

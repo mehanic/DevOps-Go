@@ -21,8 +21,6 @@ func rotate(nums []int, k int) {
 	reverse(k, n-1) //[5, 6, 7, 1, 2, 3, 4]
 }
 
-// @leet end
-
 func main() {
 	nums := []int{1, 2, 3, 4, 5, 6, 7}
 	k := 3

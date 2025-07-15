@@ -23,17 +23,14 @@ func RemoveDublicate(nums []int) int {
 
 // @leet end
 func main() {
-
 	nums := []int{1, 3, 3, 2, 3, 4, 5}
 	k := RemoveDublicate(nums)
 	fmt.Println("all array", nums)
 	fmt.Println("number unit", nums[:k])
 	fmt.Println("Count of unique values:", k)
 	main1()
-
 }
 
-// ------ thicond
 func removeDuplicates1(nums []int) int {
 	if len(nums) == 0 {
 		return 0

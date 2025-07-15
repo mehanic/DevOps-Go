@@ -89,6 +89,18 @@ func main() {
     log.Println("---------------------")
     
     // Loop in reverse order
+
+    type Champion struct {
+	Name string
+}
+
+func main() {
+	champions := []Champion{
+		{Name: "Aatrox"},
+		{Name: "Ahri"},
+		{Name: "Akali"},
+		{Name: "Alistar"},
+	}
     for i := len(champions) - 1; i >= 0; i-- {
         log.Printf("%s is at index %d\n", champions[i].Name, i)
     }

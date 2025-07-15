@@ -4,32 +4,19 @@ import "fmt"
 
 func main() {
 	var n int
+	fmt.Println("input number of quality:")
 	fmt.Scanf("%d", &n)
 	arr := [100]int{}
+	fmt.Printf("enter %d numbers:\n", n)
 	for i := 0; i < n; i++ {
-		var a int
-		fmt.Scanf("%d", &a)
-		arr[i] = a
+		fmt.Scanf("%d", &arr[i])
 	}
+
 	maxi := arr[0]
-	//20 30 40 50 60
-	//20 30 -> 30
-	//30 40 -> 40
-	//40 50 -> 50
-	//50 60 -> 60
-	//20 0 -> maxi = 20
-	//30 20 -> maxi = 30
-	for i := 0; i < n; i++ {
+	for i := 1; i < n; i++ {
 		if arr[i] > maxi {
 			maxi = arr[i]
 		}
 	}
-	fmt.Println(maxi)
+	fmt.Println("Maxi number:", maxi)
 }
-
-// 4
-// 67
-// 89
-// 0
-// 2
-// 89

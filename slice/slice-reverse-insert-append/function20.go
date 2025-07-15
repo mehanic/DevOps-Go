@@ -57,6 +57,25 @@ func reverseSlice(slice []string) {
 	}
 }
 
+
+//---------------------------------------
+
+func reverseSlice1(slice []string) {
+	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
+		slice[i], slice[j] = slice[j], slice[i]
+	}
+}
+
+func main1() {
+	names := []string{"Aatrox", "Ahri", "Akali", "Alistar"}
+	fmt.Println("Before reverse:", names)
+
+	reverseSlice1(names)
+
+	fmt.Println("After reverse:", names)
+}
+
+
 // insertAt inserts an item at a specific position in the slice.
 func insertAt(slice []string, item string, index int) []string {
 	if index > len(slice) {

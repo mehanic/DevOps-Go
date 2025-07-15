@@ -13,14 +13,8 @@ func main() {
 
 	fmt.Println(evens == evens2)
 
-	// Use     : uint8 for one of the arrays instead of byte here.
-	// Remember: Aliased types are the same types.
 	image := [5]uint8{'h', 'i'}
 	var data [5]byte
 
 	fmt.Println(data == image)
 }
-
-// true
-// true
-// false

@@ -22,7 +22,11 @@ func main() {
 	// 5. Using the ... Operator to Infer Length
 	arr5 := [...]int{1, 2, 3, 4, 5, 6, 7}
 	fmt.Println("Array using ... operator to infer length:", arr5)
+	main1()
+	main2()
+}
 
+func main1() {
 	// 6. Array of Arrays (Multi-dimensional Arrays)
 	var multiArray [2][3]int
 	multiArray[0] = [3]int{1, 2, 3}
@@ -43,7 +47,9 @@ func main() {
 	for i := 0; i < len(pointerArray); i++ {
 		fmt.Printf("pointerArray[%d] = %d\n", i, *pointerArray[i])
 	}
+}
 
+func main2() {
 	// 9. Arrays of Structs
 	type Person struct {
 		Name string

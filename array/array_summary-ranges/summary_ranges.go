@@ -41,20 +41,3 @@ func main() {
 	// Display the result
 	fmt.Println("Summary of ranges:", result)
 }
-
-//Input array: [0 1 2 4 5 7]
-//Summary of ranges: [0->2 4->5 7]
-
-// Explanation of the Function
-// Check for Single-Element Arrays:
-
-// If the input array contains only one element, it appends that element directly to the result and returns since there’s nothing more to group.
-// Iterate Through Elements:
-
-// For each element num in the array, it identifies consecutive elements by checking if the next element is exactly one more than the current one.
-// When it reaches the end of a sequence of consecutive numbers, it appends the range to the result.
-// If the range contains more than one element, it uses bytes.Buffer to build a string in the format "start->end".
-// If it’s a single number, it just appends that number.
-// Return:
-
-// The function returns the list of ranges in string format.

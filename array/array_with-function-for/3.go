@@ -9,10 +9,6 @@ func printArr(a []int, name string) {
 	}
 }
 
-// array1
-// 4 1
-// array2
-// 323 2
 func main() {
 	arr1 := []int{1, 2, 3, 4}
 	arr2 := []int{4, 5, 6, 2, 323, 23, 4, 232}

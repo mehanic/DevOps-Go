@@ -31,11 +31,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Access the elements similarly to Python's get() method
 	fmt.Println(jsonObj.ArrayOfNums)
 	fmt.Println(jsonObj.ArrayOfNums[1])
 	sum := jsonObj.ArrayOfNums[1].Number + jsonObj.ArrayOfNums[2].Number
 	fmt.Println(sum)
 	fmt.Println(jsonObj.ArrayOfFruits[2].Fruit)
 }
-
