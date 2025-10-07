@@ -4,36 +4,41 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func main() {
-	// making a slice of programming languages
+	// створення двох зрізів
 	someLanguages := []string{"python", "java", "ada", "lisp", "c++"}
 	otherLanguages := []string{"c", "go", "javascript", "php", "swift"}
-	languages := append(someLanguages, otherLanguages...) // concatenation of slices
+	languages := append(someLanguages, otherLanguages...) // об’єднання зрізів
 
-	// print languages
 	fmt.Println("\nSome programming languages are: ")
 	fmt.Println(languages)
 
-	// reversing the slice
-	reverseSlice(languages)
-	fmt.Println("\n" + strings.Title(languages[len(languages)-1]) + " is a very popular programming language.")
-	fmt.Println(strings.Title(languages[0]) + " is the programming language used to build iOS and Mac OSX applications.")
+	// створюємо title-caser для англійської
+	title := cases.Title(language.English)
 
-	// sorting the slice and printing
+	// перевертання
+	reverseSlice(languages)
+	fmt.Println("\n" + title.String(languages[len(languages)-1]) + " is a very popular programming language.")
+	fmt.Println(title.String(languages[0]) + " is the programming language used to build iOS and Mac OSX applications.")
+
+	// сортування за спаданням
 	sort.Sort(sort.Reverse(sort.StringSlice(languages)))
 	fmt.Println("\n" + fmt.Sprint(languages))
 
-	// permanent sorting in ascending order
+	// сортування за зростанням
 	sort.Strings(languages)
-	fmt.Println(strings.Title(languages[1]) + " is my favourite programming language but " + strings.ToUpper(languages[len(languages)-3]) + " is my worst.")
+	fmt.Println(title.String(languages[1]) + " is my favourite programming language but " + strings.ToUpper(languages[len(languages)-3]) + " is my worst.")
 
-	// reversing the order
+	// знову за спаданням
 	sort.Sort(sort.Reverse(sort.StringSlice(languages)))
-	fmt.Println(strings.Title(languages[len(languages)-1]) + " is one of the oldest languages around.")
+	fmt.Println(title.String(languages[len(languages)-1]) + " is one of the oldest languages around.")
 
-	// inserting, appending, deleting items
+	// вставка, додавання, видалення
 	languages = insertAt(languages, "ruby", 4)
 	languages = append(languages, "rust")
 	languages = removeAt(languages, 2)
@@ -42,11 +47,10 @@ func main() {
 	sort.Strings(languages)
 	fmt.Printf("\nIn alphabetical order, the list looks like this: \n\t%v\n", languages)
 
-	// removing specific items
+	// видалення конкретних елементів
 	languages = removeItem(languages, "go")
 	languages = removeAt(languages, len(languages)-1)
 
-	// printing the length of the slice
 	fmt.Printf("\nNow we have %d languages in the list: \n\t%v\n", len(languages), languages)
 }
 
@@ -56,25 +60,6 @@ func reverseSlice(slice []string) {
 		slice[i], slice[j] = slice[j], slice[i]
 	}
 }
-
-
-//---------------------------------------
-
-func reverseSlice1(slice []string) {
-	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
-		slice[i], slice[j] = slice[j], slice[i]
-	}
-}
-
-func main1() {
-	names := []string{"Aatrox", "Ahri", "Akali", "Alistar"}
-	fmt.Println("Before reverse:", names)
-
-	reverseSlice1(names)
-
-	fmt.Println("After reverse:", names)
-}
-
 
 // insertAt inserts an item at a specific position in the slice.
 func insertAt(slice []string, item string, index int) []string {
@@ -100,8 +85,7 @@ func removeItem(slice []string, item string) []string {
 	return slice
 }
 
-
-// Some programming languages are: 
+// Some programming languages are:
 // [python java ada lisp c++ c go javascript php swift]
 
 // Python is a very popular programming language.
@@ -111,12 +95,11 @@ func removeItem(slice []string, item string) []string {
 // C is my favourite programming language but PHP is my worst.
 // Ada is one of the oldest languages around.
 
-// We have 11 languages in the list: 
+// We have 11 languages in the list:
 // 	[swift python lisp ruby javascript java go c++ c ada rust]
 
-// In alphabetical order, the list looks like this: 
+// In alphabetical order, the list looks like this:
 // 	[ada c c++ go java javascript lisp python ruby rust swift]
 
-// Now we have 9 languages in the list: 
+// Now we have 9 languages in the list:
 // 	[ada c c++ java javascript lisp python ruby rust]
-

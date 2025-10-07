@@ -1,0 +1,796 @@
+Peter  20242024 
+
+To use jmeter-server:
+
+Install JMeter 3.0 on your machine and run it using Java 8
+http://mirror.nbtelecom.com.br/apache//jmeter/binaries/apache-jmeter-3.0.zip
+Run this container in a remote host
+git clone https://github.com/flaviostutz/jmeter-server.git
+docker-compose up -d
+(OR) docker run -p 24000:24000 -p 26000:26000 -p 2222:22
+Create a SSH tunel between your machine and the remote host running the container (this step may be skipped if you have direct access to all ports of the host machine running the container)
+ssh user@remotehostip -L 2222:localhost:2222
+In a new terminal, create a second tunel, this time the SSH tunel will connect your machine directly to the SSH inside the jmeter container and export some ports
+ssh root@localhost -p 2222 -L 24000:127.0.0.1:24000 -R 25000:127.0.0.1:25000 -L 26000:127.0.0.1:26000
+(or if you skipped last step) ssh root@remotehostip -p 2222 -L 24000:127.0.0.1:24000 -R 25000:127.0.0.1:25000 -L 26000:127.0.0.1:26000
+Edit jmeter/bin/user.properties of the JMeter you will be using as a client and add the following lines:
+remote_hosts=localhost:24000
+client.rmi.localport=25000
+mode=Statistical
+Start JMeter on your machine, create a Test Plan and execute the plan through Execute -> Execute Remote -> "localhost:24000"
+Verify your test statistics
+If needed, see container logs for details on test execution
+
+
+
+
+─mehanic at SkyNet in /etc/telegraf
+╰─λ sudo telegraf --sample-config --input-filter cpu:mem:disk --output-filter influxdb | sudo tee /etc/telegraf/telegraf.conf > /dev/null                                0 (0.002s) < 18:02:21
+
+╭─mehanic at SkyNet in /etc/telegraf
+╰─λ sudo ls -l /etc/telegraf/                                                                                                                                            0 (0.122s) < 18:04:10
+
+influx config create   --config-name default   --u http://localhost:8086   --org "user-influxdb"   --token "qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg=="   --active
+Active	Name	URL			Org
+*	default	http://localhost:8086	user-influxdb
+
+
+ └> $ influx bucket list
+ID			Name		Retention	Shard group duration	Organization ID		Schema Type
+d732da087ecdf55e	_monitoring	168h0m0s	24h0m0s			6646bfbc24be23eb	implicit
+e6b3ca7f87dc6a0b	_tasks		72h0m0s		24h0m0s			6646bfbc24be23eb	implicit
+8ab572d9b296820c	user-influxdb	infinite	168h0m0s		6646bfbc24be23eb	implicit
+
+┌────(mehanic (79.254.9.213) [No SSH] [No VPN] [🔹 no_active_playbook] [ansible_core:2.18.9] )────(/var/log/jmeter)
+ └> $ influx bucket create -n jmeter -o user-influxdb --retention 0
+ID			Name	Retention	Shard group duration	Organization ID		Schema Type
+b276e721570c7f76	jmeter	infinite	168h0m0s		6646bfbc24be23eb	implicit
+
+┌────(mehanic (79.254.9.213) [No SSH] [No VPN] [🔹 no_active_playbook] [ansible_core:2.18.9] )────(/var/log/jmeter)
+ └> $ influx auth list
+ID			Description	Token												User Name	User ID			Permissions
+0f9579f20fa1b000	Peter's Token	iUClfAuLaMvJcbURwiRdpyPvhEq-p_iFL9IatK6HziaakPZmFqocWv-aigdOmPrMYbK4MpC-kCir8A19lv0i0w==	Peter		0f9579f1f9e1b000	[read:/authorizations write:/authorizations read:/buckets write:/buckets read:/dashboards write:/dashboards read:/orgs write:/orgs read:/sources write:/sources read:/tasks write:/tasks read:/telegrafs write:/telegrafs read:/users write:/users read:/variables write:/variables read:/scrapers write:/scrapers read:/secrets write:/secrets read:/labels write:/labels read:/views write:/views read:/documents write:/documents read:/notificationRules write:/notificationRules read:/notificationEndpoints write:/notificationEndpoints read:/checks write:/checks read:/dbrp write:/dbrp read:/notebooks write:/notebooks read:/annotations write:/annotations read:/remotes write:/remotes read:/replications write:/replications]
+0f9582672b21b000	jmeter 		qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg==	Peter		0f9579f1f9e1b000	[read:orgs/6646bfbc24be23eb/annotations write:orgs/6646bfbc24be23eb/annotations read:orgs/6646bfbc24be23eb/authorizations write:orgs/6646bfbc24be23eb/authorizations read:orgs/6646bfbc24be23eb/buckets write:orgs/6646bfbc24be23eb/buckets read:orgs/6646bfbc24be23eb/checks write:orgs/6646bfbc24be23eb/checks read:orgs/6646bfbc24be23eb/dashboards write:orgs/6646bfbc24be23eb/dashboards read:orgs/6646bfbc24be23eb/dbrp write:orgs/6646bfbc24be23eb/dbrp read:orgs/6646bfbc24be23eb/documents write:orgs/6646bfbc24be23eb/documents read:orgs/6646bfbc24be23eb/labels write:orgs/6646bfbc24be23eb/labels read:orgs/6646bfbc24be23eb/notebooks write:orgs/6646bfbc24be23eb/notebooks read:orgs/6646bfbc24be23eb/notificationEndpoints write:orgs/6646bfbc24be23eb/notificationEndpoints read:orgs/6646bfbc24be23eb/notificationRules write:orgs/6646bfbc24be23eb/notificationRules read:/orgs/6646bfbc24be23eb read:orgs/6646bfbc24be23eb/remotes write:orgs/6646bfbc24be23eb/remotes read:orgs/6646bfbc24be23eb/replications write:orgs/6646bfbc24be23eb/replications read:orgs/6646bfbc24be23eb/scrapers write:orgs/6646bfbc24be23eb/scrapers read:orgs/6646bfbc24be23eb/secrets write:orgs/6646bfbc24be23eb/secrets read:orgs/6646bfbc24be23eb/sources write:orgs/6646bfbc24be23eb/sources read:orgs/6646bfbc24be23eb/tasks write:orgs/6646bfbc24be23eb/tasks read:orgs/6646bfbc24be23eb/telegrafs write:orgs/6646bfbc24be23eb/telegrafs read:/users/0f9579f1f9e1b000 write:/users/0f9579f1f9e1b000 read:orgs/6646bfbc24be23eb/variables write:orgs/6646bfbc24be23eb/variables read:orgs/6646bfbc24be23eb/views write:orgs/6646bfbc24be23eb/views]
+
+
+ curl -i http://localhost:8086/health
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+X-Influxdb-Build: OSS
+X-Influxdb-Version: v2.7.12
+Date: Thu, 02 Oct 2025 18:36:36 GMT
+Content-Length: 138
+
+{"name":"influxdb", "message":"ready for queries and writes", "status":"pass", "checks":[], "version": "v2.7.12", "commit": "ec9dcde5d6"}
+
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -5m)
+' --org user-influxdb --token "qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg=="
+ 
+
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, cpu, host]
+                   _start:time                      _stop:time           _field:string     _measurement:string              cpu:string             host:string                      _time:time                  _value:float
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ----------------------  ------------------------------  ----------------------------
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:30.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:40.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:50.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:00.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:10.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:20.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:30.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:40.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:34:50.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:35:00.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:35:10.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:35:20.000000000Z                             0
+2025-10-02T18:33:29.806
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "elapsed")
+  |> mean()
+
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "label")
+  |> count()
+  |> aggregateWindow(every: 1s, fn: count, createEmpty: false)
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "success")
+  |> group(columns: ["success"])
+  |> count()
+
+
+influx query 'from(bucket: "jmeter") |> range(start: -24h) |> limit(n:5)'
+
+telegraf --config /etc/telegraf/telegraf.conf --test
+
+
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] =~ /noData/)
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime")
+
+
+influx query 'from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-0")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime_HTTP_Request_0")'
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-1")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+'
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-1")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime_HTTP_Request_1")
+'
+
+
+ head -n 5 /home/mehanic/Downloads/apache-jmeter-5.6.3/Experiments/results.csv 
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1759491606818,241,HTTP Request,200,OK,Thread Group 1-2,text,true,,137497,331,26,26,https://www.ukr.net/,39,0,25
+1759491606818,39,HTTP Request-0,301,Moved Permanently,Thread Group 1-2,text,true,,350,109,26,26,http://ukr.net/,39,0,25
+1759491606857,56,HTTP Request-1,301,Moved Permanently,Thread Group 1-2,text,true,,475,109,26,26,https://ukr.net/,56,0,40
+1759491606913,146,HTTP Request-2,200,OK,Thread Group 1-2,text,true,,136672,113,26,26,https://www.ukr.net/,82,0,55
+
+Те, що ти бачиш у файлі:
+
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+
+
+— це заголовки CSV-файлу, тобто імена колонок.
+
+Вони з’явилися через те, що JMeter при збереженні результатів тесту у CSV формат включає ці заголовки автоматично.
+
+Як це працює у JMeter:
+
+У Test Plan ти додаєш Listener — наприклад "View Results in Table" або "Simple Data Writer".
+
+Цей Listener записує результати тесту у файл CSV.
+
+JMeter має налаштування у файлі jmeter.properties або в самому Listener, які визначають, які поля зберігати.
+
+Перелік полів у заголовку відповідає значенням, які можна отримати у JMeter:
+
+timeStamp — час початку виконання запиту (у мілісекундах).
+
+elapsed — час відповіді запиту у мілісекундах.
+
+label — ім’я запиту (Sampler Name).
+
+responseCode — HTTP код відповіді.
+
+responseMessage — HTTP повідомлення відповіді.
+
+threadName — ім’я потоку (Thread Group).
+
+dataType — тип даних.
+
+success — true/false (успішний запит чи ні).
+
+failureMessage — повідомлення про помилку.
+
+bytes — кількість байтів у відповіді.
+
+sentBytes — кількість байтів, відправлених у запиті.
+
+grpThreads — кількість потоків у групі.
+
+allThreads — загальна кількість потоків.
+
+URL — URL запиту.
+
+Latency — затримка відповіді.
+
+IdleTime — час бездіяльності між запитами.
+
+Connect — час встановлення з’єднання.
+
+--------------------------------------
+
+Де з’являються заголовки CSV у JMeter
+
+Ці назви колонок (timeStamp, elapsed, label, …) беруться з налаштувань Listener-а та файлу конфігурації JMeter:
+
+За замовчуванням JMeter зберігає всі стандартні поля в CSV.
+
+Це контролюється у файлі jmeter.properties або user.properties.
+
+Параметр, який відповідає за заголовки — це:
+
+jmeter.save.saveservice.output_format=csv
+jmeter.save.saveservice.default_delimiter=,
+
+
+А набір полів — через параметр:
+
+jmeter.save.saveservice.print_field_names=true
+
+2️⃣ Як змінити набір полів у CSV
+Варіант А — через файл jmeter.properties
+
+Знайди файл jmeter.properties або user.properties в папці /bin JMeter.
+
+Відкрий його у текстовому редакторі.
+
+Знайди секцію Save Service.
+Вона виглядає приблизно так:
+
+#------------------------------------
+# Sample Event Save Configuration
+#------------------------------------
+
+jmeter.save.saveservice.output_format=csv
+jmeter.save.saveservice.print_field_names=true
+jmeter.save.saveservice.default_delimiter=,
+jmeter.save.saveservice.timestamp_format=ms
+
+
+Щоб змінити, які поля записуються, додай або зміні параметр:
+
+jmeter.save.saveservice.output_fields=timeStamp,elapsed,label,responseCode
+
+
+Це означає, що у CSV будуть тільки ці поля. Можна вказати будь-який набір полів з доступних.
+
+Варіант Б — через GUI JMeter (Listeners)
+
+У твоєму Test Plan додай Listener: "Simple Data Writer".
+
+У Listener є кнопка Configure.
+
+Там можна вручну вибрати галочками потрібні поля, наприклад:
+
+timeStamp
+
+elapsed
+
+label
+
+responseCode
+і прибрати всі інші.
+
+Це зручніше, ніж правити .properties, якщо хочеш змінити налаштування лише для одного тесту.
+
+3️⃣ Приклад
+
+Якщо ти хочеш зберігати лише timeStamp, elapsed, label і responseCode, то можна:
+
+у GUI: зайти в Simple Data Writer → Configure → залишити ці галочки.
+
+або у user.properties додати:
+
+jmeter.save.saveservice.output_fields=timeStamp,elapsed,label,responseCode
+
+
+💡 Порада: після зміни .properties потрібно перезапустити JMeter, щоб зміни застосувалися.
+
+Чим він відрізняється від InfluxDB + JMeter
+
+InfluxDB → зручніший для raw даних (elapsed, bytes, URL), ти реально маєш повний CSV у базі.
+
+Prometheus → більше для агрегованих метрик (latency, throughput, errors, active users). Він не зберігає всю сирину, а лише те, що ти сам визначиш у експортері.
+
+Тобто:
+
+Influx → детально аналізувати кожен запит.
+
+Prometheus → відстежувати здоров’я системи під навантаженням у реальному часі.
+
+
+ curl http://localhost:9090/api/v1/targets
+{"status":"success","data":{"activeTargets":[{"discoveredLabels":{"__address__":"localhost:9093","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"alertmanager"},"labels":{"instance":"localhost:9093","job":"alertmanager"},"scrapePool":"alertmanager","scrapeUrl":"http://localhost:9093/metrics","globalUrl":"http://SkyNet:9093/metrics","lastError":"Get \"http://localhost:9093/metrics\": dial tcp 127.0.0.1:9093: connect: connection refused","lastScrape":"2025-10-03T18:51:23.667263632+02:00","lastScrapeDuration":0.000399257,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"http://localhost:8080 127.0.0.1","__metrics_path__":"/probe","__param_module":"http_2xx","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"blackbox"},"labels":{"instance":"http:22","job":"blackbox"},"scrapePool":"blackbox","scrapeUrl":"http://127.0.0.1:9115/probe?module=http_2xx\u0026target=http%3A22","globalUrl":"http://SkyNet:9115/probe?module=http_2xx\u0026target=http%3A22","lastError":"Get \"http://127.0.0.1:9115/probe?module=http_2xx\u0026target=http%3A22\": dial tcp 127.0.0.1:9115: connect: connection refused","lastScrape":"2025-10-03T18:51:19.988804875+02:00","lastScrapeDuration":0.000216556,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9107","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"5s","__scrape_timeout__":"5s","job":"consul_exporter"},"labels":{"instance":"localhost:9107","job":"consul_exporter"},"scrapePool":"consul_exporter","scrapeUrl":"http://localhost:9107/metrics","globalUrl":"http://SkyNet:9107/metrics","lastError":"Get \"http://localhost:9107/metrics\": dial tcp 127.0.0.1:9107: connect: connection refused","lastScrape":"2025-10-03T18:51:25.271029669+02:00","lastScrapeDuration":0.00026393,"health":"down","scrapeInterval":"5s","scrapeTimeout":"5s"},{"discoveredLabels":{"__address__":"localhost:9001","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"jmeter","project":"WebAppLoadTest","testName":"MyLoadTest"},"labels":{"instance":"localhost:9001","job":"jmeter","project":"WebAppLoadTest","testName":"MyLoadTest"},"scrapePool":"jmeter","scrapeUrl":"http://localhost:9001/metrics","globalUrl":"http://SkyNet:9001/metrics","lastError":"Get \"http://localhost:9001/metrics\": dial tcp 127.0.0.1:9001: connect: connection refused","lastScrape":"2025-10-03T18:51:27.684439813+02:00","lastScrapeDuration":0.000252027,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9100","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"node_exporter"},"labels":{"instance":"localhost:9100","job":"node_exporter"},"scrapePool":"node_exporter","scrapeUrl":"http://localhost:9100/metrics","globalUrl":"http://SkyNet:9100/metrics","lastError":"Get \"http://localhost:9100/metrics\": dial tcp 127.0.0.1:9100: connect: connection refused","lastScrape":"2025-10-03T18:51:16.603393554+02:00","lastScrapeDuration":0.000258966,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9187","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"postgres_exporter"},"labels":{"instance":"localhost:9187","job":"postgres_exporter"},"scrapePool":"postgres_exporter","scrapeUrl":"http://localhost:9187/metrics","globalUrl":"http://SkyNet:9187/metrics","lastError":"Get \"http://localhost:9187/metrics\": dial tcp 127.0.0.1:9187: connect: connection refused","lastScrape":"2025-10-03T18:51:24.484530118+02:00","lastScrapeDuration":0.00023817,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9256","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"process exporter"},"labels":{"instance":"localhost:9256","job":"process exporter"},"scrapePool":"process exporter","scrapeUrl":"http://localhost:9256/metrics","globalUrl":"http://SkyNet:9256/metrics","lastError":"Get \"http://localhost:9256/metrics\": dial tcp 127.0.0.1:9256: connect: connection refused","lastScrape":"2025-10-03T18:51:22.440691511+02:00","lastScrapeDuration":0.000241811,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9090","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"prometheus"},"labels":{"instance":"localhost:9090","job":"prometheus"},"scrapePool":"prometheus","scrapeUrl":"http://localhost:9090/metrics","globalUrl":"http://SkyNet:9090/metrics","lastError":"","lastScrape":"2025-10-03T18:51:16.993739287+02:00","lastScrapeDuration":0.003456614,"health":"up","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9091","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"push-gateway"},"labels":{"instance":"localhost:9091","job":"push-gateway"},"scrapePool":"push-gateway","scrapeUrl":"http://localhost:9091/metrics","globalUrl":"http://SkyNet:9091/metrics","lastError":"Get \"http://localhost:9091/metrics\": dial tcp 127.0.0.1:9091: connect: connection refused","lastScrape":"2025-10-03T18:51:23.759483859+02:00","lastScrapeDuration":0.0003898,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9558","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"systemd_exporter"},"labels":{"instance":"localhost:9558","job":"systemd_exporter"},"scrapePool":"systemd_exporter","scrapeUrl":"http://localhost:9558/metrics","globalUrl":"http://SkyNet:9558/metrics","lastError":"","lastScrape":"2025-10-03T18:51:26.194984484+02:00","lastScrapeDuration":0.374144247,"health":"up","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9273","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"telegraf"},"labels":{"instance":"localhost:9273","job":"telegraf"},"scrapePool":"telegraf","scrapeUrl":"http://localhost:9273/metrics","globalUrl":"http://SkyNet:9273/metrics","lastError":"Get \"http://localhost:9273/metrics\": dial tcp 127.0.0.1:9273: connect: connection refused","lastScrape":"2025-10-03T18:51:16.022816778+02:00","lastScrapeDuration":0.000237277,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:8200","__metrics_path__":"/v1/sys/metris","__param_format":"prometheus","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"vault"},"labels":{"instance":"localhost:8200","job":"vault"},"scrapePool":"vault","scrapeUrl":"http://localhost:8200/v1/sys/metris?format=prometheus","globalUrl":"http://SkyNet:8200/v1/sys/metris?format=prometheus","lastError":"Get \"http://localhost:8200/v1/sys/metris?format=prometheus\": dial tcp 127.0.0.1:8200: connect: connection refused","lastScrape":"2025-10-03T18:51:15.499503915+02:00","lastScrapeDuration":0.000278549,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"}],"droppedTargets":[],"droppedTargetCounts":{"alertmanager":0,"blackbox":0,"consul_exporter":0,"jmeter":0,"node_exporter":0,"postgres_exporter":0,"process exporter":0,"prometheus":0,"push-gateway":0,"systemd_exporter":0,"telegraf":0,"vault":0}}}
+
+
+
+HEAP="-Xms1g -Xmx2g -XX:MaxMetaspaceSize=512m" /home/mehanic/Downloads/apache-jmeter-5.6.3/bin/jmeter -n -t ThreadGroup.jmx -JprometheusMetricsPort=9001 -JprometheusMetricsHost=0.0.0.0SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/log4j-slf4j-impl-2.22.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/ApacheJmeter_Schema_Assertion-1.1.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/jmeter-agent-1.0.10-jar-with-dependencies.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/jmeter-grpc-request.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadGroup.jmx
+Starting standalone test @ 2025 Oct 3 23:32:39 CEST (1759527159234)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +    284 in 00:00:10 =   28.4/s Avg:   172 Min:   125 Max:  1328 Err:     0 (0.00%) Active: 4 Started: 50 Finished: 46
+summary +    316 in 00:00:11 =   28.6/s Avg:   159 Min:   125 Max:   325 Err:     0 (0.00%) Active: 0 Started: 100 Finished: 100
+summary =    600 in 00:00:21 =   28.5/s Avg:   165 Min:   125 Max:  1328 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Oct 3 23:33:11 CEST (1759527191052)
+... end of run
+
+
+curl 'http://localhost:9090/api/v1/query?query=jmeter_latency'
+
+from(bucket: "jmeter")
+  |> range(start: -24h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "grpThreads")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "elapsed")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "URL")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter")
+  |> keep(columns: ["_time", "threadName", "_value", "_field"])
+  |> limit(n:20)
+  
+  
+  from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "timeStamp")
+  |> map(fn: (r) => ({
+      r with humanTime: string(v: time(v: int(v: r._value) / 1000))
+  }))
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "responseCode")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "sentBytes")
+  |> distinct(column: "_value")
+
+
+  /usr/local/bin/graphite_exporter \
+  --graphite.listen-address=":9108" \
+  --graphite.mapping-config=/etc/graphite_exporter/mapping.yml \
+  --log.level=info
+
+sudo lsof -p $(pgrep graphite_exporter) | grep mapping.yml
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# PerformenceTest_Chaos_engineering
+Peter  20242024 
+
+
+
+
+
+sudo telegraf --sample-config --input-filter cpu:mem:disk --output-filter influxdb | sudo tee /etc/telegraf/telegraf.conf > /dev/null                                
+
+
+
+influx config create   --config-name default   --u http://localhost:8086   --org "user-influxdb"   --token "qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg=="   --active
+Active	Name	URL			Org
+*	default	http://localhost:8086	user-influxdb
+
+
+ influx bucket list
+ID			Name		Retention	Shard group duration	Organization ID		Schema Type
+d732da087ecdf55e	_monitoring	168h0m0s	24h0m0s			6646bfbc24be23eb	implicit
+e6b3ca7f87dc6a0b	_tasks		72h0m0s		24h0m0s			6646bfbc24be23eb	implicit
+8ab572d9b296820c	user-influxdb	infinite	168h0m0s		6646bfbc24be23eb	implicit
+
+influx bucket create -n jmeter -o user-influxdb --retention 0
+ID			Name	Retention	Shard group duration	Organization ID		Schema Type
+b276e721570c7f76	jmeter	infinite	168h0m0s		6646bfbc24be23eb	implicit
+
+
+ influx auth list
+ID			Description	Token												User Name	User ID			Permissions
+0f9579f20fa1b000	Peter's Token	iUClfAuLaMvJcbURwiRdpyPvhEq-p_iFL9IatK6HziaakPZmFqocWv-aigdOmPrMYbK4MpC-kCir8A19lv0i0w==	Peter		0f9579f1f9e1b000	[read:/authorizations write:/authorizations read:/buckets write:/buckets read:/dashboards write:/dashboards read:/orgs write:/orgs read:/sources write:/sources read:/tasks write:/tasks read:/telegrafs write:/telegrafs read:/users write:/users read:/variables write:/variables read:/scrapers write:/scrapers read:/secrets write:/secrets read:/labels write:/labels read:/views write:/views read:/documents write:/documents read:/notificationRules write:/notificationRules read:/notificationEndpoints write:/notificationEndpoints read:/checks write:/checks read:/dbrp write:/dbrp read:/notebooks write:/notebooks read:/annotations write:/annotations read:/remotes write:/remotes read:/replications write:/replications]
+0f9582672b21b000	jmeter 		qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg==	Peter		0f9579f1f9e1b000	[read:orgs/6646bfbc24be23eb/annotations write:orgs/6646bfbc24be23eb/annotations read:orgs/6646bfbc24be23eb/authorizations write:orgs/6646bfbc24be23eb/authorizations read:orgs/6646bfbc24be23eb/buckets write:orgs/6646bfbc24be23eb/buckets read:orgs/6646bfbc24be23eb/checks write:orgs/6646bfbc24be23eb/checks read:orgs/6646bfbc24be23eb/dashboards write:orgs/6646bfbc24be23eb/dashboards read:orgs/6646bfbc24be23eb/dbrp write:orgs/6646bfbc24be23eb/dbrp read:orgs/6646bfbc24be23eb/documents write:orgs/6646bfbc24be23eb/documents read:orgs/6646bfbc24be23eb/labels write:orgs/6646bfbc24be23eb/labels read:orgs/6646bfbc24be23eb/notebooks write:orgs/6646bfbc24be23eb/notebooks read:orgs/6646bfbc24be23eb/notificationEndpoints write:orgs/6646bfbc24be23eb/notificationEndpoints read:orgs/6646bfbc24be23eb/notificationRules write:orgs/6646bfbc24be23eb/notificationRules read:/orgs/6646bfbc24be23eb read:orgs/6646bfbc24be23eb/remotes write:orgs/6646bfbc24be23eb/remotes read:orgs/6646bfbc24be23eb/replications write:orgs/6646bfbc24be23eb/replications read:orgs/6646bfbc24be23eb/scrapers write:orgs/6646bfbc24be23eb/scrapers read:orgs/6646bfbc24be23eb/secrets write:orgs/6646bfbc24be23eb/secrets read:orgs/6646bfbc24be23eb/sources write:orgs/6646bfbc24be23eb/sources read:orgs/6646bfbc24be23eb/tasks write:orgs/6646bfbc24be23eb/tasks read:orgs/6646bfbc24be23eb/telegrafs write:orgs/6646bfbc24be23eb/telegrafs read:/users/0f9579f1f9e1b000 write:/users/0f9579f1f9e1b000 read:orgs/6646bfbc24be23eb/variables write:orgs/6646bfbc24be23eb/variables read:orgs/6646bfbc24be23eb/views write:orgs/6646bfbc24be23eb/views]
+
+
+curl -i http://localhost:8086/health
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+X-Influxdb-Build: OSS
+X-Influxdb-Version: v2.7.12
+Date: Thu, 02 Oct 2025 18:36:36 GMT
+Content-Length: 138
+
+{"name":"influxdb", "message":"ready for queries and writes", "status":"pass", "checks":[], "version": "v2.7.12", "commit": "ec9dcde5d6"}
+
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -5m)
+' --org user-influxdb --token "qy9ugDBafZ2Jmu4f29bhQYnpf18z8hs9DbIOO03jaaz0WZdM0KKSljqAWhkYYlxyxQg6mad5C_WJw39oWkjFcg=="
+ 
+
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, cpu, host]
+                   _start:time                      _stop:time           _field:string     _measurement:string              cpu:string             host:string                      _time:time                  _value:float
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ----------------------  ------------------------------  ----------------------------
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:30.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:40.000000000Z                             0
+2025-10-02T18:33:29.806388235Z  2025-10-02T18:38:29.806388235Z             usage_guest                     cpu               cpu-total                  SkyNet  2025-10-02T18:33:50.000000000Z                             0
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "elapsed")
+  |> mean()
+
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "label")
+  |> count()
+  |> aggregateWindow(every: 1s, fn: count, createEmpty: false)
+
+
+from(bucket: "jmeter")
+  |> range(start: -15m)
+  |> filter(fn: (r) => r._field == "success")
+  |> group(columns: ["success"])
+  |> count()
+
+
+influx query 'from(bucket: "jmeter") |> range(start: -24h) |> limit(n:5)'
+
+telegraf --config /etc/telegraf/telegraf.conf --test
+
+
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] =~ /noData/)
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime")
+
+
+influx query 'from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-0")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime_HTTP_Request_0")'
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-1")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+'
+
+
+influx query '
+from(bucket: "jmeter")
+  |> range(start: -20h, stop: now())
+  |> filter(fn: (r) => r["_measurement"] == "requestsRaw")
+  |> filter(fn: (r) => r["_field"] == "connectTime")
+  |> filter(fn: (r) => r["errorMessage"] == "noData")
+  |> filter(fn: (r) => r["errorResponseBody"] == "noData")
+  |> filter(fn: (r) => r["nodeName"] == "Test-Node")
+  |> filter(fn: (r) => r["requestName"] == "HTTP Request-1")
+  |> aggregateWindow(every: 10s, fn: mean, createEmpty: false)
+  |> yield(name: "mean_connectTime_HTTP_Request_1")
+'
+
+
+head -n 5 /home/mehanic/Downloads/apache-jmeter-5.6.3/Experiments/results.csv 
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1759491606818,241,HTTP Request,200,OK,Thread Group 1-2,text,true,,137497,331,26,26,https://www.ukr.net/,39,0,25
+1759491606818,39,HTTP Request-0,301,Moved Permanently,Thread Group 1-2,text,true,,350,109,26,26,http://ukr.net/,39,0,25
+1759491606857,56,HTTP Request-1,301,Moved Permanently,Thread Group 1-2,text,true,,475,109,26,26,https://ukr.net/,56,0,40
+1759491606913,146,HTTP Request-2,200,OK,Thread Group 1-2,text,true,,136672,113,26,26,https://www.ukr.net/,82,0,55
+
+
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+
+
+— це заголовки CSV-файлу, тобто імена колонок.
+
+Вони з’явилися через те, що JMeter при збереженні результатів тесту у CSV формат включає ці заголовки автоматично.
+
+Як це працює у JMeter:
+
+У Test Plan ти додаєш Listener — наприклад "View Results in Table" або "Simple Data Writer".
+
+Цей Listener записує результати тесту у файл CSV.
+
+JMeter має налаштування у файлі jmeter.properties або в самому Listener, які визначають, які поля зберігати.
+
+Перелік полів у заголовку відповідає значенням, які можна отримати у JMeter:
+
+timeStamp — час початку виконання запиту (у мілісекундах).
+
+elapsed — час відповіді запиту у мілісекундах.
+
+label — ім’я запиту (Sampler Name).
+
+responseCode — HTTP код відповіді.
+
+responseMessage — HTTP повідомлення відповіді.
+
+threadName — ім’я потоку (Thread Group).
+
+dataType — тип даних.
+
+success — true/false (успішний запит чи ні).
+
+failureMessage — повідомлення про помилку.
+
+bytes — кількість байтів у відповіді.
+
+sentBytes — кількість байтів, відправлених у запиті.
+
+grpThreads — кількість потоків у групі.
+
+allThreads — загальна кількість потоків.
+
+URL — URL запиту.
+
+Latency — затримка відповіді.
+
+IdleTime — час бездіяльності між запитами.
+
+Connect — час встановлення з’єднання.
+
+--------------------------------------
+
+Де з’являються заголовки CSV у JMeter
+
+Ці назви колонок (timeStamp, elapsed, label, …) беруться з налаштувань Listener-а та файлу конфігурації JMeter:
+
+За замовчуванням JMeter зберігає всі стандартні поля в CSV.
+
+Це контролюється у файлі jmeter.properties або user.properties.
+
+Параметр, який відповідає за заголовки — це:
+
+jmeter.save.saveservice.output_format=csv
+jmeter.save.saveservice.default_delimiter=,
+
+
+А набір полів — через параметр:
+
+jmeter.save.saveservice.print_field_names=true
+
+2️⃣ Як змінити набір полів у CSV
+Варіант А — через файл jmeter.properties
+
+Знайди файл jmeter.properties або user.properties в папці /bin JMeter.
+
+Відкрий його у текстовому редакторі.
+
+Знайди секцію Save Service.
+Вона виглядає приблизно так:
+
+#------------------------------------
+# Sample Event Save Configuration
+#------------------------------------
+
+jmeter.save.saveservice.output_format=csv
+jmeter.save.saveservice.print_field_names=true
+jmeter.save.saveservice.default_delimiter=,
+jmeter.save.saveservice.timestamp_format=ms
+
+
+Щоб змінити, які поля записуються, додай або зміні параметр:
+
+jmeter.save.saveservice.output_fields=timeStamp,elapsed,label,responseCode
+
+
+Це означає, що у CSV будуть тільки ці поля. Можна вказати будь-який набір полів з доступних.
+
+Варіант Б — через GUI JMeter (Listeners)
+
+У твоєму Test Plan додай Listener: "Simple Data Writer".
+
+У Listener є кнопка Configure.
+
+Там можна вручну вибрати галочками потрібні поля, наприклад:
+
+timeStamp
+
+elapsed
+
+label
+
+responseCode
+і прибрати всі інші.
+
+Це зручніше, ніж правити .properties, якщо хочеш змінити налаштування лише для одного тесту.
+
+3️⃣ Приклад
+
+Якщо ти хочеш зберігати лише timeStamp, elapsed, label і responseCode, то можна:
+
+у GUI: зайти в Simple Data Writer → Configure → залишити ці галочки.
+
+або у user.properties додати:
+
+jmeter.save.saveservice.output_fields=timeStamp,elapsed,label,responseCode
+
+
+💡 Порада: після зміни .properties потрібно перезапустити JMeter, щоб зміни застосувалися.
+
+Чим він відрізняється від InfluxDB + JMeter
+
+InfluxDB → зручніший для raw даних (elapsed, bytes, URL), ти реально маєш повний CSV у базі.
+
+Prometheus → більше для агрегованих метрик (latency, throughput, errors, active users). Він не зберігає всю сирину, а лише те, що ти сам визначиш у експортері.
+
+Тобто:
+
+Influx → детально аналізувати кожен запит.
+
+Prometheus → відстежувати здоров’я системи під навантаженням у реальному часі.
+
+
+ curl http://localhost:9090/api/v1/targets
+{"status":"success","data":{"activeTargets":[{"discoveredLabels":{"__address__":"localhost:9093","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"alertmanager"},"labels":{"instance":"localhost:9093","job":"alertmanager"},"scrapePool":"alertmanager","scrapeUrl":"http://localhost:9093/metrics","globalUrl":"http://SkyNet:9093/metrics","lastError":"Get \"http://localhost:9093/metrics\": dial tcp 127.0.0.1:9093: connect: connection refused","lastScrape":"2025-10-03T18:51:23.667263632+02:00","lastScrapeDuration":0.000399257,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"http://localhost:8080 127.0.0.1","__metrics_path__":"/probe","__param_module":"http_2xx","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"blackbox"},"labels":{"instance":"http:22","job":"blackbox"},"scrapePool":"blackbox","scrapeUrl":"http://127.0.0.1:9115/probe?module=http_2xx\u0026target=http%3A22","globalUrl":"http://SkyNet:9115/probe?module=http_2xx\u0026target=http%3A22","lastError":"Get \"http://127.0.0.1:9115/probe?module=http_2xx\u0026target=http%3A22\": dial tcp 127.0.0.1:9115: connect: connection refused","lastScrape":"2025-10-03T18:51:19.988804875+02:00","lastScrapeDuration":0.000216556,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9107","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"5s","__scrape_timeout__":"5s","job":"consul_exporter"},"labels":{"instance":"localhost:9107","job":"consul_exporter"},"scrapePool":"consul_exporter","scrapeUrl":"http://localhost:9107/metrics","globalUrl":"http://SkyNet:9107/metrics","lastError":"Get \"http://localhost:9107/metrics\": dial tcp 127.0.0.1:9107: connect: connection refused","lastScrape":"2025-10-03T18:51:25.271029669+02:00","lastScrapeDuration":0.00026393,"health":"down","scrapeInterval":"5s","scrapeTimeout":"5s"},{"discoveredLabels":{"__address__":"localhost:9001","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"jmeter","project":"WebAppLoadTest","testName":"MyLoadTest"},"labels":{"instance":"localhost:9001","job":"jmeter","project":"WebAppLoadTest","testName":"MyLoadTest"},"scrapePool":"jmeter","scrapeUrl":"http://localhost:9001/metrics","globalUrl":"http://SkyNet:9001/metrics","lastError":"Get \"http://localhost:9001/metrics\": dial tcp 127.0.0.1:9001: connect: connection refused","lastScrape":"2025-10-03T18:51:27.684439813+02:00","lastScrapeDuration":0.000252027,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9100","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"node_exporter"},"labels":{"instance":"localhost:9100","job":"node_exporter"},"scrapePool":"node_exporter","scrapeUrl":"http://localhost:9100/metrics","globalUrl":"http://SkyNet:9100/metrics","lastError":"Get \"http://localhost:9100/metrics\": dial tcp 127.0.0.1:9100: connect: connection refused","lastScrape":"2025-10-03T18:51:16.603393554+02:00","lastScrapeDuration":0.000258966,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9187","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"postgres_exporter"},"labels":{"instance":"localhost:9187","job":"postgres_exporter"},"scrapePool":"postgres_exporter","scrapeUrl":"http://localhost:9187/metrics","globalUrl":"http://SkyNet:9187/metrics","lastError":"Get \"http://localhost:9187/metrics\": dial tcp 127.0.0.1:9187: connect: connection refused","lastScrape":"2025-10-03T18:51:24.484530118+02:00","lastScrapeDuration":0.00023817,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9256","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"process exporter"},"labels":{"instance":"localhost:9256","job":"process exporter"},"scrapePool":"process exporter","scrapeUrl":"http://localhost:9256/metrics","globalUrl":"http://SkyNet:9256/metrics","lastError":"Get \"http://localhost:9256/metrics\": dial tcp 127.0.0.1:9256: connect: connection refused","lastScrape":"2025-10-03T18:51:22.440691511+02:00","lastScrapeDuration":0.000241811,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9090","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"prometheus"},"labels":{"instance":"localhost:9090","job":"prometheus"},"scrapePool":"prometheus","scrapeUrl":"http://localhost:9090/metrics","globalUrl":"http://SkyNet:9090/metrics","lastError":"","lastScrape":"2025-10-03T18:51:16.993739287+02:00","lastScrapeDuration":0.003456614,"health":"up","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9091","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"push-gateway"},"labels":{"instance":"localhost:9091","job":"push-gateway"},"scrapePool":"push-gateway","scrapeUrl":"http://localhost:9091/metrics","globalUrl":"http://SkyNet:9091/metrics","lastError":"Get \"http://localhost:9091/metrics\": dial tcp 127.0.0.1:9091: connect: connection refused","lastScrape":"2025-10-03T18:51:23.759483859+02:00","lastScrapeDuration":0.0003898,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9558","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"systemd_exporter"},"labels":{"instance":"localhost:9558","job":"systemd_exporter"},"scrapePool":"systemd_exporter","scrapeUrl":"http://localhost:9558/metrics","globalUrl":"http://SkyNet:9558/metrics","lastError":"","lastScrape":"2025-10-03T18:51:26.194984484+02:00","lastScrapeDuration":0.374144247,"health":"up","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:9273","__metrics_path__":"/metrics","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"telegraf"},"labels":{"instance":"localhost:9273","job":"telegraf"},"scrapePool":"telegraf","scrapeUrl":"http://localhost:9273/metrics","globalUrl":"http://SkyNet:9273/metrics","lastError":"Get \"http://localhost:9273/metrics\": dial tcp 127.0.0.1:9273: connect: connection refused","lastScrape":"2025-10-03T18:51:16.022816778+02:00","lastScrapeDuration":0.000237277,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"},{"discoveredLabels":{"__address__":"localhost:8200","__metrics_path__":"/v1/sys/metris","__param_format":"prometheus","__scheme__":"http","__scrape_interval__":"15s","__scrape_timeout__":"10s","job":"vault"},"labels":{"instance":"localhost:8200","job":"vault"},"scrapePool":"vault","scrapeUrl":"http://localhost:8200/v1/sys/metris?format=prometheus","globalUrl":"http://SkyNet:8200/v1/sys/metris?format=prometheus","lastError":"Get \"http://localhost:8200/v1/sys/metris?format=prometheus\": dial tcp 127.0.0.1:8200: connect: connection refused","lastScrape":"2025-10-03T18:51:15.499503915+02:00","lastScrapeDuration":0.000278549,"health":"down","scrapeInterval":"15s","scrapeTimeout":"10s"}],"droppedTargets":[],"droppedTargetCounts":{"alertmanager":0,"blackbox":0,"consul_exporter":0,"jmeter":0,"node_exporter":0,"postgres_exporter":0,"process exporter":0,"prometheus":0,"push-gateway":0,"systemd_exporter":0,"telegraf":0,"vault":0}}}
+
+
+
+HEAP="-Xms1g -Xmx2g -XX:MaxMetaspaceSize=512m" /home/mehanic/Downloads/apache-jmeter-5.6.3/bin/jmeter -n -t ThreadGroup.jmx -JprometheusMetricsPort=9001 -JprometheusMetricsHost=0.0.0.0SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/log4j-slf4j-impl-2.22.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/ApacheJmeter_Schema_Assertion-1.1.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/jmeter-agent-1.0.10-jar-with-dependencies.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/mehanic/Downloads/apache-jmeter-5.6.3/lib/ext/jmeter-grpc-request.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using ThreadGroup.jmx
+Starting standalone test @ 2025 Oct 3 23:32:39 CEST (1759527159234)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +    284 in 00:00:10 =   28.4/s Avg:   172 Min:   125 Max:  1328 Err:     0 (0.00%) Active: 4 Started: 50 Finished: 46
+summary +    316 in 00:00:11 =   28.6/s Avg:   159 Min:   125 Max:   325 Err:     0 (0.00%) Active: 0 Started: 100 Finished: 100
+summary =    600 in 00:00:21 =   28.5/s Avg:   165 Min:   125 Max:  1328 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Oct 3 23:33:11 CEST (1759527191052)
+... end of run
+
+
+curl 'http://localhost:9090/api/v1/query?query=jmeter_latency'
+
+from(bucket: "jmeter")
+  |> range(start: -24h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "grpThreads")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "elapsed")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "URL")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter")
+  |> keep(columns: ["_time", "threadName", "_value", "_field"])
+  |> limit(n:20)
+  
+  
+  from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "timeStamp")
+  |> map(fn: (r) => ({
+      r with humanTime: string(v: time(v: int(v: r._value) / 1000))
+  }))
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "responseCode")
+  |> distinct(column: "_value")
+
+
+from(bucket: "jmeter")
+  |> range(start: -12h)
+  |> filter(fn: (r) => r._measurement == "jmeter" and r._field == "sentBytes")
+  |> distinct(column: "_value")
+
+
+  /usr/local/bin/graphite_exporter \
+  --graphite.listen-address=":9108" \
+  --graphite.mapping-config=/etc/graphite_exporter/mapping.yml \
+  --log.level=info
+
+sudo lsof -p $(pgrep graphite_exporter) | grep mapping.yml
+
+To use jmeter-server:
+
+Install JMeter on your machine and run it using Java *
+http://mirror.nbtelecom.com.br/apache//jmeter/binaries/apache-jmeter-3.0.zip
+Run this container in a remote host
+git clone https://github.com/flaviostutz/jmeter-server.git
+docker-compose up -d
+(OR) docker run -p 24000:24000 -p 26000:26000 -p 2222:22
+Create a SSH tunel between your machine and the remote host running the container (this step may be skipped if you have direct access to all ports of the host machine running the container)
+ssh user@remotehostip -L 2222:localhost:2222
+In a new terminal, create a second tunel, this time the SSH tunel will connect your machine directly to the SSH inside the jmeter container and export some ports
+ssh root@localhost -p 2222 -L 24000:127.0.0.1:24000 -R 25000:127.0.0.1:25000 -L 26000:127.0.0.1:26000
+(or if you skipped last step) ssh root@remotehostip -p 2222 -L 24000:127.0.0.1:24000 -R 25000:127.0.0.1:25000 -L 26000:127.0.0.1:26000
+Edit jmeter/bin/user.properties of the JMeter you will be using as a client and add the following lines:
+remote_hosts=localhost:24000
+client.rmi.localport=25000
+mode=Statistical
+Start JMeter on your machine, create a Test Plan and execute the plan through Execute -> Execute Remote -> "localhost:24000"
+Verify your test statistics
+If needed, see container logs for details on test execution
+

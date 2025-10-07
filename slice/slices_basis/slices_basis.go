@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(b)
 	b[0] = "dd"
 	fmt.Println(b)
-	//slice обердтка над массивом
+	// slice обердтка над массивом
 	// animalSlices := []string{
 	// 	"dog",
 	// 	"cat",
@@ -24,12 +24,13 @@ func main() {
 	// 	"fox",
 	// }
 
-	//чем массивы отличаются от слайсов в golang
+	// чем массивы отличаются от слайсов в golang
 
 	f := []string{"as", "d"}
 
 	fmt.Println(f)
-
+	arrays()
+	slices()
 }
 
 func arrays() {
@@ -42,7 +43,7 @@ func arrays() {
 }
 
 func slices() {
-	//slices
+	// slices
 	letters := []string{"a", "b"}
 	letters[0] = "f"
 	letters = append(letters, "c", "d")
@@ -56,8 +57,8 @@ func slices() {
 
 	createSlice = append(createSlice, "g")
 	fmt.Println(createSlice)
-	//слайсы это массивы динамической длины!!!или капасту
-	//капаситу увелчится вдвое когда длина слайса превышает макс.возможную капаситу
+	// слайсы это массивы динамической длины!!!или капасту
+	// капаситу увелчится вдвое когда длина слайса превышает макс.возможную капаситу
 	fmt.Println(fmt.Sprintf("cap: %d", cap(createSlice)))
 	fmt.Println(fmt.Sprintf("len: %d", len(createSlice)))
 }

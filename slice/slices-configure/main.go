@@ -6,33 +6,33 @@ import (
 )
 
 func main() {
-	// numbers := []int{2, 3, 4, 5}
-	// fmt.Println(numbers)
+	numbers := []int{2, 3, 4, 5}
+	fmt.Println(numbers)
 
-	// nums := make([]int, 2)
-	// fmt.Println("%#v\n", nums)
+	nums := make([]int, 2)
+	fmt.Println("%#v\n", nums)
 
-	// type names []string
+	type names []string
 
-	// friends := names{"Dan", "Maria"}
-	// fmt.Println(friends)
+	friends := names{"Dan", "Maria"}
+	fmt.Println(friends)
 
-	// myFriend := friends[0]
-	// fmt.Println("My best friend is ", myFriend)
+	myFriend := friends[0]
+	fmt.Println("My best friend is ", myFriend)
 
-	// for index, value := range numbers {
-	// 	fmt.Printf("index %v, value %v\n", index, value)
-	// }
+	for index, value := range numbers {
+		fmt.Printf("index %v, value %v\n", index, value)
+	}
 
 	////////////comparing slices/////////////////////////
 
-	var n []int //empty and unintialized
+	var n []int // empty and unintialized
 	fmt.Println(n == nil)
 
-	m := []int{} //empty but initialized
+	m := []int{} // empty but initialized
 	fmt.Println(m == nil)
 
-	//slices cannot be compared to one another with the equal operator only to nil
+	// slices cannot be compared to one another with the equal operator only to nil
 
 	a, b := []int{1, 2, 3}, []int{1, 2, 3}
 	_, _ = a, b
@@ -58,9 +58,9 @@ func main() {
 
 	// Append to a slice and/or slice copying
 
-	numbers := []int{2, 3}
-	numbers = append(numbers, 10)
-	fmt.Println(numbers)
+	numbers1 := []int{2, 3}
+	numbers = append(numbers1, 10)
+	fmt.Println(numbers1)
 
 	numbers = append(numbers, 20, 30, 40)
 	fmt.Println(numbers)
@@ -74,10 +74,10 @@ func main() {
 	nn := copy(dst, src)
 	fmt.Println(src, dst, nn)
 
-	//slice expression
-	//notice that when we slice an array, it returns a slice and not an array
+	// slice expression
+	// notice that when we slice an array, it returns a slice and not an array
 
-	var narr = [5]int{1, 2, 3, 4, 5}
+	narr := [5]int{1, 2, 3, 4, 5}
 
 	barr := narr[1:4]
 
@@ -85,7 +85,7 @@ func main() {
 
 	// slice internals backing arrays and slice headers
 	// when a slice is created by slicing an array, the array becomes the backing array of the new slice
-	//this shows that slices from an array are always connected and not referred to as a complete new slice
+	// this shows that slices from an array are always connected and not referred to as a complete new slice
 	s1 := []int{10, 20, 30, 40, 50, 60}
 	s3, s4 := s1[0:2], s1[1:3]
 
@@ -99,7 +99,7 @@ func main() {
 	arr1[1] = 600
 	fmt.Println(arr1, slice1, slice2)
 
-	//to create a completely new slice, one that isnt connected to its backing array, we use the append function
+	// to create a completely new slice, one that isnt connected to its backing array, we use the append function
 
 	cars := []string{"Ford", "Nissan", "Honda", "RangeRover"}
 	newCars := []string{}
@@ -126,17 +126,16 @@ func main() {
 	fmt.Printf("slice size in byte %d \n", unsafe.Sizeof(sl))
 
 	var num []int
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
-	
-	num = append(num, 10, 20)
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
-	num = append(num, 30)
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
-	num = append(num, 40)
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
-	num = append(num, 50)
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
-	num = append(num[0:4], 60,70,80,90,100)
-	fmt.Printf("Length: %d , Capactiy: %d \n", len(num),cap(num))
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
 
+	num = append(num, 10, 20)
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
+	num = append(num, 30)
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
+	num = append(num, 40)
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
+	num = append(num, 50)
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
+	num = append(num[0:4], 60, 70, 80, 90, 100)
+	fmt.Printf("Length: %d , Capactiy: %d \n", len(num), cap(num))
 }

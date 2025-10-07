@@ -3,9 +3,8 @@ package main
 import "fmt"
 
 func main() {
-
 	// Total
-	var num_slice = []int{1, 2, 3, 4}
+	num_slice := []int{1, 2, 3, 4}
 	fmt.Println("Length:", len(num_slice), "Capacity:", cap(num_slice))
 
 	num_slice = append(num_slice, 10)
@@ -44,11 +43,9 @@ func main() {
 	// fmt.Println(n)
 }
 
-
 // Length: 4 Capacity: 4
 // Length: 5 Capacity: 8
 // Length: 6 Capacity: 8
 // Length: 7 Capacity: 8
 // Length: 8 Capacity: 8
 // [11 22 44 55 66]
-

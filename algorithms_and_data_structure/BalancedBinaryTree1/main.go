@@ -10,7 +10,7 @@ func isBalanced(root *TreeNode) bool {
     if root == nil {
         return true
     }
-    
+
     left := height(root.Left)
     right := height(root.Right)
     if abs(left-right) > 1 {
@@ -39,3 +39,10 @@ func abs(x int) int {
     }
     return x
 }
+
+
+
+
+
+
+func

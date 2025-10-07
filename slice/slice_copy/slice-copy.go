@@ -23,6 +23,11 @@ func main() {
 func main1() {
 	// #1: received the raining probabilities
 	data := []float64{10, 25, 30, 50}
+	s.Show("Probabilities (data)", data)
+
+	fmt.Printf("Is it gonna rain? %.f%% chance.\n",
+		(data[0]+data[1]+data[2]+data[3])/
+			float64(len(data)))
 
 	// #2: received new data
 	// newData := []float64{80, 90}
@@ -55,9 +60,4 @@ func main1() {
 	// s.Show("Probabilities (saved)", saved) // #7
 
 	// #1: print the probabilities
-	s.Show("Probabilities (data)", data)
-
-	fmt.Printf("Is it gonna rain? %.f%% chance.\n",
-		(data[0]+data[1]+data[2]+data[3])/
-			float64(len(data)))
 }

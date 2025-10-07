@@ -56,8 +56,7 @@ func main1() {
 	fmt.Printf("alives   : %T %d %t\n", alives, len(alives), alives == nil)
 }
 
-//slice-literal
-
+// slice-literal
 func main2() {
 	var (
 		names     []string  // The names of your friends
@@ -84,8 +83,7 @@ func main2() {
 	}
 }
 
-//declare-array-as-slices
-
+// declare-array-as-slices
 func main3() {
 	names := []string{"Einstein", "Tesla", "Shepard"}
 	distances := []int{50, 40, 75, 30, 125}
@@ -102,8 +100,7 @@ func main3() {
 	fmt.Printf("zero     : %[1]T %[1]d\n", zero)
 }
 
-//fix-the-problems
-
+// fix-the-problems
 func main4() {
 	names := []string{"Einstein", "Shepard", "Tesla"}
 
@@ -118,8 +115,7 @@ func main4() {
 	fmt.Printf("%d\n", nums)
 }
 
-//compare-the-slices
-
+// compare-the-slices
 func main5() {
 	namesA := "Da Vinci, Wozniak, Carmack"
 	namesB := []string{"Wozniak", "Da Vinci", "Carmack"}
@@ -139,8 +135,7 @@ func main5() {
 	}
 }
 
-//append
-
+// append
 func main6() {
 	png, header := []byte{'P', 'N', 'G'}, []byte{}
 
@@ -151,30 +146,14 @@ func main6() {
 	}
 }
 
-//append-2
-
+// append-2
 func main7() {
-	// ------------------------------------------------------------
-	// Create nil slices
-	// ------------------------------------------------------------
-
-	// Pizza toppings
 	var pizza []string
-
-	// Departure times
 	var departures []time.Time
-
-	// Student graduation years
 	var grads []int
-
-	// On/off states of lights in a room
 	var lights []bool
 
-	// ------------------------------------------------------------
-	// Append them some elements 
-	// ------------------------------------------------------------
 	pizza = append(pizza, "pepperoni", "onions", "extra cheese")
-
 	now := time.Now()
 	departures = append(departures,
 		now,
@@ -182,12 +161,7 @@ func main7() {
 		now.Add(time.Hour*48)) // 48 hours after `now`
 
 	grads = append(grads, 1998, 2005, 2018)
-
 	lights = append(lights, true, false, true)
-
-	// ------------------------------------------------------------
-	// Print the slices
-	// ------------------------------------------------------------
 
 	fmt.Printf("pizza       : %s\n", pizza)
 	fmt.Printf("\ngraduations : %d\n", grads)
@@ -195,8 +169,7 @@ func main7() {
 	fmt.Printf("\nlights      : %t\n", lights)
 }
 
-//append-3
-
+// append-3
 func main8() {
 	toppings := []string{"black olives", "green peppers"}
 
